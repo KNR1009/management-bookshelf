@@ -1,5 +1,6 @@
 import React from 'react';
-import { Footer } from './footer';
+import styled from 'styled-components';
+// import { Footer } from './footer';
 import { Header } from './header';
 
 type Props = {
@@ -10,8 +11,14 @@ export const Layout: React.FC<Props> = (props) => {
   return (
     <>
       <Header />
-      {props.children}
-      <Footer />
+      <Main>{props.children}</Main>
+      {/* <Footer /> */}
     </>
   );
 };
+
+const Main = styled.main`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px;
+`;

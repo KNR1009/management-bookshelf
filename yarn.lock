@@ -3127,10 +3127,17 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^18.0.27":
-  "integrity" "sha512-3vtRKHgVxu3Jp9t718R9BuzoD4NcQ8YJ5XRzsSKxNDiDonD2MXIT1TmSkenxuCycZJoQT5d2vE8LwWJxBC1gmA=="
-  "resolved" "https://registry.npmjs.org/@types/react/-/react-18.0.27.tgz"
-  "version" "18.0.27"
+"@types/react-icons@^3.0.0":
+  "integrity" "sha512-Vefs6LkLqF61vfV7AiAqls+vpR94q67gunhMueDznG+msAkrYgRxl7gYjNem/kZ+as2l2mNChmF1jRZzzQQtMg=="
+  "resolved" "https://registry.npmjs.org/@types/react-icons/-/react-icons-3.0.0.tgz"
+  "version" "3.0.0"
+  dependencies:
+    "react-icons" "*"
+
+"@types/react@*", "@types/react@^18.0.38":
+  "integrity" "sha512-ExsidLLSzYj4cvaQjGnQCk4HFfVT9+EZ9XZsQ8Hsrcn8QNgXtpZ3m9vSIC2MWtx7jHictK6wYhQgGh6ic58oOw=="
+  "resolved" "https://registry.npmjs.org/@types/react/-/react-18.0.38.tgz"
+  "version" "18.0.38"
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -10439,6 +10446,11 @@
   dependencies:
     "@babel/runtime" "^7.20.6"
     "html-parse-stringify" "^3.0.1"
+
+"react-icons@*":
+  "integrity" "sha512-N6+kOLcihDiAnj5Czu637waJqSnwlMNROzVZMhfX68V/9bu9qHaMIJC4UdozWoOk57gahFCNHwVvWzm0MTzRjg=="
+  "resolved" "https://registry.npmjs.org/react-icons/-/react-icons-4.8.0.tgz"
+  "version" "4.8.0"
 
 "react-inspector@^5.1.0":
   "integrity" "sha512-GURDaYzoLbW8pMGXwYPDBIv6nqei4kK7LPRZ9q9HCZF54wqXz/dnylBp/kfE9XmekBhHvLDdcYeyIwSrvtOiWg=="
