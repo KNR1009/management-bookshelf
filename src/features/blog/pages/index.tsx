@@ -55,42 +55,98 @@ export const Blog: React.FC = () => {
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
-                <img src='https://placehold.jp/324x196.png' alt='' />
+                <Image src='/mori-kyo.jpg' width={324} height={196} alt='My avatar' />
               </div>
             </div>
           </div>
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
-                <img src='https://placehold.jp/324x196.png' alt='' />
+                <Image src='/haruka.jpg' width={324} height={196} alt='My avatar' />
               </div>
             </div>
           </div>
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
-                <img src='https://placehold.jp/324x196.png' alt='' />
+                <Image src='/iidaken.jpg' width={324} height={196} alt='My avatar' />
               </div>
             </div>
           </div>
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
-                <img src='https://placehold.jp/324x196.png' alt='' />
+                <Image src='/ogawa.jpg' width={324} height={196} alt='My avatar' />
               </div>
             </div>
           </div>
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
-                <img src='https://placehold.jp/324x196.png' alt='' />
+                <Image src='/satomi.jpg' width={324} height={196} alt='My avatar' />
               </div>
             </div>
           </div>
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
-                <img src='https://placehold.jp/324x196.png' alt='' />
+                <Image src='/nakazima.jpg' width={324} height={196} alt='My avatar' />
+              </div>
+            </div>
+          </div>
+          <div className='card-container'>
+            <div className='card'>
+              <div className='card-image'>
+                <Image src='/nobuo.jpg' width={324} height={196} alt='My avatar' />
+              </div>
+            </div>
+          </div>
+          <div className='card-container'>
+            <div className='card'>
+              <div className='card-image'>
+                <Image src='/kondou.jpg' width={324} height={196} alt='My avatar' />
+              </div>
+            </div>
+          </div>
+          <div className='card-container'>
+            <div className='card'>
+              <div className='card-image'>
+                <Image src='/mako.jpg' width={324} height={196} alt='My avatar' />
+              </div>
+            </div>
+          </div>
+          <div className='card-container'>
+            <div className='card'>
+              <div className='card-image'>
+                <Image src='/takamura.jpg' width={324} height={196} alt='My avatar' />
+              </div>
+            </div>
+          </div>
+          <div className='card-container'>
+            <div className='card'>
+              <div className='card-image'>
+                <Image src='/kura.jpg' width={324} height={196} alt='My avatar' />
+              </div>
+            </div>
+          </div>
+          <div className='card-container'>
+            <div className='card'>
+              <div className='card-image'>
+                <Image src='/naoto.jpg' width={324} height={196} alt='My avatar' />
+              </div>
+            </div>
+          </div>
+          <div className='card-container'>
+            <div className='card'>
+              <div className='card-image'>
+                <Image src='/yumi.jpg' width={324} height={196} alt='My avatar' />
+              </div>
+            </div>
+          </div>
+          <div className='card-container'>
+            <div className='card'>
+              <div className='card-image'>
+                <Image src='/meru.jpg' width={324} height={196} alt='My avatar' />
               </div>
             </div>
           </div>
