@@ -1,7 +1,9 @@
 import React from 'react';
+// style
 import styled from 'styled-components';
 import Image from 'next/image';
 import logo from '../../../public/logo.png';
+// icon
 import { FaSearch } from 'react-icons/fa';
 
 export const Header: React.FC = () => {
