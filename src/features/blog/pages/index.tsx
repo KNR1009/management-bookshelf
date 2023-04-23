@@ -109,9 +109,14 @@ const Wrapper = styled.div`
   }
   .card-container {
     background-color: #ffffff;
+    border-radius: 16px;
   }
   .card {
-    padding: 10px;
+    padding: 12px 12px 16px 12px;
+  }
+  .card-image {
+    text-align: center;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   }
 
   .title-category {
