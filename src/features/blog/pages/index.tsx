@@ -43,12 +43,55 @@ export const Blog: React.FC = () => {
                 </button>
               </div>
             ))}
-
             <div className='category'>
               <button className='add-button'>
                 <PlusIcon />
                 もっと見る
               </button>
+            </div>
+          </div>
+        </div>
+        <div className='cards-container'>
+          <div className='card-container'>
+            <div className='card'>
+              <div className='card-image'>
+                <img src='https://placehold.jp/324x196.png' alt='' />
+              </div>
+            </div>
+          </div>
+          <div className='card-container'>
+            <div className='card'>
+              <div className='card-image'>
+                <img src='https://placehold.jp/324x196.png' alt='' />
+              </div>
+            </div>
+          </div>
+          <div className='card-container'>
+            <div className='card'>
+              <div className='card-image'>
+                <img src='https://placehold.jp/324x196.png' alt='' />
+              </div>
+            </div>
+          </div>
+          <div className='card-container'>
+            <div className='card'>
+              <div className='card-image'>
+                <img src='https://placehold.jp/324x196.png' alt='' />
+              </div>
+            </div>
+          </div>
+          <div className='card-container'>
+            <div className='card'>
+              <div className='card-image'>
+                <img src='https://placehold.jp/324x196.png' alt='' />
+              </div>
+            </div>
+          </div>
+          <div className='card-container'>
+            <div className='card'>
+              <div className='card-image'>
+                <img src='https://placehold.jp/324x196.png' alt='' />
+              </div>
             </div>
           </div>
         </div>
@@ -58,6 +101,19 @@ export const Blog: React.FC = () => {
 };
 
 const Wrapper = styled.div`
+  .cards-container {
+    margin-top: 24px;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .card-container {
+    background-color: #ffffff;
+  }
+  .card {
+    padding: 10px;
+  }
+
   .title-category {
     display: flex;
     justify-content: space-between;
