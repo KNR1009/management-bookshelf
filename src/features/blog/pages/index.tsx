@@ -58,7 +58,7 @@ export const Blog: React.FC = () => {
                 <Image src='/mori-kyo.jpg' width={324} height={196} alt='My avatar' />
               </div>
               <div className='card-title'>
-                <p>急成長のITスターアップ</p>
+                <p>急成長のITスターアップで成長を目指す</p>
               </div>
               <div className='card-infos'>
                 <div className='company-info'>
@@ -66,7 +66,7 @@ export const Blog: React.FC = () => {
                   <p className='company-name'>株式会社 メディアリンク</p>
                 </div>
                 <div className='category-name'>
-                  <p>aaa</p>
+                  <p>エンジニア</p>
                 </div>
               </div>
             </div>
@@ -169,6 +169,34 @@ export const Blog: React.FC = () => {
 };
 
 const Wrapper = styled.div`
+  .category-name {
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-size: 14px;
+    color: #747475;
+    background-color: rgba(84, 41, 255, 0.1);
+  }
+  .card-title {
+    margin-top: 24px;
+    font-size: 24px;
+    color: #27262e;
+    font-weight: bold;
+  }
+  .card-infos {
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .personal-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #747475;
+  }
+  .company-name {
+    font-size: 14px;
+    color: #747475;
+  }
   .cards-container {
     margin-top: 24px;
     display: grid;
@@ -190,15 +218,10 @@ const Wrapper = styled.div`
     text-align: center;
     overflow: hidden;
     transition: transform 0.2s ease-out;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
   }
   .card-image:hover {
     transform: scale(1.05);
-  }
-  .category-name {
-    padding: 5px 12px;
-    border-radius: 30px;
-    background-color: rgba(84, 41, 255, 0.1);
   }
 
   .title-category {
