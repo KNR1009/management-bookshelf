@@ -57,6 +57,18 @@ export const Blog: React.FC = () => {
               <div className='card-image'>
                 <Image src='/mori-kyo.jpg' width={324} height={196} alt='My avatar' />
               </div>
+              <div className='card-title'>
+                <p>急成長のITスターアップ</p>
+              </div>
+              <div className='card-infos'>
+                <div className='company-info'>
+                  <p className='personal-name'>高田信彦 （経営者）</p>
+                  <p className='company-name'>株式会社 メディアリンク</p>
+                </div>
+                <div className='category-name'>
+                  <p>aaa</p>
+                </div>
+              </div>
             </div>
           </div>
           <div className='card-container'>
@@ -166,13 +178,27 @@ const Wrapper = styled.div`
   .card-container {
     background-color: #ffffff;
     border-radius: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15);
   }
   .card {
     padding: 12px 12px 16px 12px;
+    overflow: hidden;
   }
   .card-image {
+    display: flex;
+    justify-content: center;
     text-align: center;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    transition: transform 0.2s ease-out;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  .card-image:hover {
+    transform: scale(1.05);
+  }
+  .category-name {
+    padding: 5px 12px;
+    border-radius: 30px;
+    background-color: rgba(84, 41, 255, 0.1);
   }
 
   .title-category {
