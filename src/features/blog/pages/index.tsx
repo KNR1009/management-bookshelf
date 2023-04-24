@@ -52,6 +52,7 @@ export const Blog: React.FC = () => {
           </div>
         </div>
         <div className='cards-container'>
+          {/* カード */}
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
@@ -71,94 +72,266 @@ export const Blog: React.FC = () => {
               </div>
             </div>
           </div>
+          {/* カード */}
+          {/* カード */}
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
                 <Image src='/haruka.jpg' width={324} height={196} alt='My avatar' />
               </div>
+              <div className='card-title'>
+                <p>急成長のITスターアップで成長を目指す</p>
+              </div>
+              <div className='card-infos'>
+                <div className='company-info'>
+                  <p className='personal-name'>高田信彦 （経営者）</p>
+                  <p className='company-name'>株式会社 メディアリンク</p>
+                </div>
+                <div className='category-name'>
+                  <p>エンジニア</p>
+                </div>
+              </div>
             </div>
           </div>
+          {/* カード */}
+          {/* カード */}
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
                 <Image src='/iidaken.jpg' width={324} height={196} alt='My avatar' />
               </div>
+              <div className='card-title'>
+                <p>急成長のITスターアップで成長を目指す</p>
+              </div>
+              <div className='card-infos'>
+                <div className='company-info'>
+                  <p className='personal-name'>高田信彦 （経営者）</p>
+                  <p className='company-name'>株式会社 メディアリンク</p>
+                </div>
+                <div className='category-name'>
+                  <p>エンジニア</p>
+                </div>
+              </div>
             </div>
           </div>
+          {/* カード */}
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
                 <Image src='/ogawa.jpg' width={324} height={196} alt='My avatar' />
               </div>
+              <div className='card-title'>
+                <p>急成長のITスターアップで成長を目指す</p>
+              </div>
+              <div className='card-infos'>
+                <div className='company-info'>
+                  <p className='personal-name'>高田信彦 （経営者）</p>
+                  <p className='company-name'>株式会社 メディアリンク</p>
+                </div>
+                <div className='category-name'>
+                  <p>エンジニア</p>
+                </div>
+              </div>
             </div>
           </div>
+          {/* カード */}
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
                 <Image src='/satomi.jpg' width={324} height={196} alt='My avatar' />
               </div>
+              <div className='card-title'>
+                <p>急成長のITスターアップで成長を目指す</p>
+              </div>
+              <div className='card-infos'>
+                <div className='company-info'>
+                  <p className='personal-name'>高田信彦 （経営者）</p>
+                  <p className='company-name'>株式会社 メディアリンク</p>
+                </div>
+                <div className='category-name'>
+                  <p>エンジニア</p>
+                </div>
+              </div>
             </div>
           </div>
+          {/* カード */}
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
                 <Image src='/nakazima.jpg' width={324} height={196} alt='My avatar' />
               </div>
+              <div className='card-title'>
+                <p>急成長のITスターアップで成長を目指す</p>
+              </div>
+              <div className='card-infos'>
+                <div className='company-info'>
+                  <p className='personal-name'>高田信彦 （経営者）</p>
+                  <p className='company-name'>株式会社 メディアリンク</p>
+                </div>
+                <div className='category-name'>
+                  <p>エンジニア</p>
+                </div>
+              </div>
             </div>
           </div>
+          {/* カード */}
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
                 <Image src='/nobuo.jpg' width={324} height={196} alt='My avatar' />
               </div>
+              <div className='card-title'>
+                <p>急成長のITスターアップで成長を目指す</p>
+              </div>
+              <div className='card-infos'>
+                <div className='company-info'>
+                  <p className='personal-name'>高田信彦 （経営者）</p>
+                  <p className='company-name'>株式会社 メディアリンク</p>
+                </div>
+                <div className='category-name'>
+                  <p>エンジニア</p>
+                </div>
+              </div>
             </div>
           </div>
+          {/* カード */}
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
                 <Image src='/kondou.jpg' width={324} height={196} alt='My avatar' />
               </div>
+              <div className='card-title'>
+                <p>急成長のITスターアップで成長を目指す</p>
+              </div>
+              <div className='card-infos'>
+                <div className='company-info'>
+                  <p className='personal-name'>高田信彦 （経営者）</p>
+                  <p className='company-name'>株式会社 メディアリンク</p>
+                </div>
+                <div className='category-name'>
+                  <p>エンジニア</p>
+                </div>
+              </div>
             </div>
           </div>
+          {/* カード */}
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
                 <Image src='/mako.jpg' width={324} height={196} alt='My avatar' />
               </div>
+              <div className='card-title'>
+                <p>急成長のITスターアップで成長を目指す</p>
+              </div>
+              <div className='card-infos'>
+                <div className='company-info'>
+                  <p className='personal-name'>高田信彦 （経営者）</p>
+                  <p className='company-name'>株式会社 メディアリンク</p>
+                </div>
+                <div className='category-name'>
+                  <p>エンジニア</p>
+                </div>
+              </div>
             </div>
           </div>
+          {/* カード */}
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
                 <Image src='/takamura.jpg' width={324} height={196} alt='My avatar' />
               </div>
+              <div className='card-title'>
+                <p>急成長のITスターアップで成長を目指す</p>
+              </div>
+              <div className='card-infos'>
+                <div className='company-info'>
+                  <p className='personal-name'>高田信彦 （経営者）</p>
+                  <p className='company-name'>株式会社 メディアリンク</p>
+                </div>
+                <div className='category-name'>
+                  <p>エンジニア</p>
+                </div>
+              </div>
             </div>
           </div>
+          {/* カード */}
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
                 <Image src='/kura.jpg' width={324} height={196} alt='My avatar' />
               </div>
+              <div className='card-title'>
+                <p>急成長のITスターアップで成長を目指す</p>
+              </div>
+              <div className='card-infos'>
+                <div className='company-info'>
+                  <p className='personal-name'>高田信彦 （経営者）</p>
+                  <p className='company-name'>株式会社 メディアリンク</p>
+                </div>
+                <div className='category-name'>
+                  <p>エンジニア</p>
+                </div>
+              </div>
             </div>
           </div>
+          {/* カード */}
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
                 <Image src='/naoto.jpg' width={324} height={196} alt='My avatar' />
               </div>
+              <div className='card-title'>
+                <p>急成長のITスターアップで成長を目指す</p>
+              </div>
+              <div className='card-infos'>
+                <div className='company-info'>
+                  <p className='personal-name'>高田信彦 （経営者）</p>
+                  <p className='company-name'>株式会社 メディアリンク</p>
+                </div>
+                <div className='category-name'>
+                  <p>エンジニア</p>
+                </div>
+              </div>
             </div>
           </div>
+          {/* カード */}
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
                 <Image src='/yumi.jpg' width={324} height={196} alt='My avatar' />
               </div>
+              <div className='card-title'>
+                <p>急成長のITスターアップで成長を目指す</p>
+              </div>
+              <div className='card-infos'>
+                <div className='company-info'>
+                  <p className='personal-name'>高田信彦 （経営者）</p>
+                  <p className='company-name'>株式会社 メディアリンク</p>
+                </div>
+                <div className='category-name'>
+                  <p>エンジニア</p>
+                </div>
+              </div>
             </div>
           </div>
+          {/* カード */}
+          {/* カード */}
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
                 <Image src='/meru.jpg' width={324} height={196} alt='My avatar' />
+              </div>
+              <div className='card-title'>
+                <p>急成長のITスターアップで成長を目指す</p>
+              </div>
+              <div className='card-infos'>
+                <div className='company-info'>
+                  <p className='personal-name'>高田信彦 （経営者）</p>
+                  <p className='company-name'>株式会社 メディアリンク</p>
+                </div>
+                <div className='category-name'>
+                  <p>エンジニア</p>
+                </div>
               </div>
             </div>
           </div>
