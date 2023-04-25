@@ -4,6 +4,7 @@ import Image from 'next/image';
 import logo from '../../../../public/banner.png';
 // icon
 import { FaPlus } from 'react-icons/fa';
+import { useFetchBlogs } from '../hooks';
 // TODO: API側と合わせる
 const ButtonLabel = [
   {
@@ -21,6 +22,7 @@ export const Blog: React.FC = () => {
   const handleClick = (index: number) => {
     setIsActiveIndex(index);
   };
+  const { blogs } = useFetchBlogs();
   return (
     <Wrapper>
       <div className='banner'>
