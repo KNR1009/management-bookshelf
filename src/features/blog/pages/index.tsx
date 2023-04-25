@@ -351,7 +351,7 @@ const Wrapper = styled.div`
   }
   .card-title {
     margin-top: 24px;
-    font-size: 24px;
+    font-size: 20px;
     color: #27262e;
     font-weight: bold;
   }
