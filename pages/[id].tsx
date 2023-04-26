@@ -5,10 +5,6 @@ import { BlogDetail } from '@/features/blog/pages/[id]';
 import { Layout } from '@/components/layout';
 import { useRouter } from 'next/router';
 import { useFetchBlog } from '@/features/blog/hooks';
-// hooks
-import { useEffect, useState } from 'react';
-// model
-import { BlogType } from '@/model/blog';
 
 const Home: NextPage = () => {
   const router = useRouter();
