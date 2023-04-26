@@ -2,34 +2,37 @@ import React from 'react';
 // style
 import styled from 'styled-components';
 import Image from 'next/image';
+// model
+import { BlogType } from '@/model/blog';
+import { formatSlashYMD } from '@/utils/formatter';
 
-export const BlogDetail: React.FC = () => {
+type Props = {
+  blog: BlogType;
+};
+
+export const BlogDetail: React.FC<Props> = (props) => {
+  const createMarkup = (htmlString: string) => {
+    return { __html: htmlString };
+  };
   return (
     <Wrapper>
       <div className='title-container'>
         <div className='category'>
-          <p>デザイン</p>
+          <p>{props.blog.acf.category_name}</p>
         </div>
         <div className='title-container'>
-          <h1>Sketch 67リリース。ドキュメントへの埋め込みフォント対応。</h1>
+          <h1>{props.blog.title}</h1>
         </div>
         <div className='post-data'>
-          <p>2020.02.09</p>
+          <p>{formatSlashYMD(new Date(props.blog.date))}</p>
         </div>
       </div>
       <div className='image-container'>
-        <img src='/mako.jpg' alt='' />
+        <img src={props.blog.acf.image01} alt='' />
       </div>
       {/* TODO: 実際の記事データを入れたタイミングで改修する */}
       <div className='blog-container'>
-        <h2>セクション1</h2>
-        <p>
-          アプリやWebのデザイン、プロトタイプの作成に優れたアプリ『Sketch』を提供するBohemian
-          coding社は現地時間2020年7月1日、Sketch 67をリリースしました。
-          アップデート内容の詳細は公式サイトのログから確認できます。 この記事ではアップデート内容を日本語で解説します。
-          解説する対象は、主なアップデートと改善点（What’s improved）のみで修正点（What’s fixed）は含まれていません。
-          完璧な和訳ではなく編集も加えているため、正確な情報を知りたい場合は原文をご確認ください。
-        </p>
+        <div dangerouslySetInnerHTML={createMarkup(props.blog.content)} />
       </div>
       <div className='recommended-articles'>
         <h2>おすすめ記事</h2>

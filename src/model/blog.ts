@@ -21,6 +21,10 @@ export const BlogFactory = (rep?: BlogRepository) => {
     index: async (): Promise<BlogType[]> => {
       const response = await repository.getBlogs();
       return response;
+    },
+    show: async (id: number): Promise<BlogType> => {
+      const response = await repository.getBlog(id);
+      return response;
     }
   };
 };

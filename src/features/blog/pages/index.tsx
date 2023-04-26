@@ -4,7 +4,9 @@ import Image from 'next/image';
 import logo from '../../../../public/banner.png';
 // icon
 import { FaPlus } from 'react-icons/fa';
-import { useFetchBlogs } from '../hooks';
+
+// model
+import { BlogType } from '@/model/blog';
 // TODO: API側と合わせる
 const ButtonLabel = [
   {
@@ -16,13 +18,17 @@ const ButtonLabel = [
   { id: 4, name: 'マーケティング' }
 ];
 
-export const Blog: React.FC = () => {
+type Props = {
+  blogs: BlogType[];
+};
+
+export const Blog: React.FC<Props> = (props) => {
   const [isActiveIndex, setIsActiveIndex] = useState<number>(0);
   // TODO: APIでカテゴリーに応じたデータを取得する
   const handleClick = (index: number) => {
     setIsActiveIndex(index);
   };
-  const { blogs } = useFetchBlogs();
+  console.log(props.blogs);
   return (
     <Wrapper>
       <div className='banner'>
@@ -58,7 +64,7 @@ export const Blog: React.FC = () => {
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
-                <Image src='/mori-kyo.jpg' width={324} height={196} alt='My avatar' />
+                <img src='/mori-kyo.jpg' alt='' />
               </div>
               <div className='card-title'>
                 <p>急成長のITスターアップで成長を目指す</p>
@@ -79,7 +85,7 @@ export const Blog: React.FC = () => {
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
-                <Image src='/haruka.jpg' width={324} height={196} alt='My avatar' />
+                <img src='/haruka.jpg' alt='' />
               </div>
               <div className='card-title'>
                 <p>急成長のITスターアップで成長を目指す</p>
@@ -317,7 +323,6 @@ export const Blog: React.FC = () => {
             </div>
           </div>
           {/* カード */}
-          {/* カード */}
           <div className='card-container'>
             <div className='card'>
               <div className='card-image'>
@@ -377,6 +382,13 @@ const Wrapper = styled.div`
     display: grid;
     gap: 24px;
     grid-template-columns: repeat(3, 1fr);
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 765px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
   .card-container {
     background-color: #ffffff;
@@ -393,7 +405,7 @@ const Wrapper = styled.div`
     text-align: center;
     overflow: hidden;
     transition: transform 0.2s ease-out;
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); */
   }
   .card-image:hover {
     transform: scale(1.05);
