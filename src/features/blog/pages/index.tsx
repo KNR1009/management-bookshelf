@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import logo from '../../../../public/banner.png';
@@ -7,341 +7,82 @@ import { FaPlus } from 'react-icons/fa';
 
 // model
 import { BlogType } from '@/model/blog';
-// TODO: API側と合わせる
-const ButtonLabel = [
-  {
-    id: 1,
-    name: '全て'
-  },
-  { id: 2, name: 'エンジニア' },
-  { id: 3, name: 'デザイナー' },
-  { id: 4, name: 'マーケティング' }
-];
+import { useRouter } from 'next/router';
 
 type Props = {
   blogs: BlogType[];
 };
 
 export const Blog: React.FC<Props> = (props) => {
-  const [isActiveIndex, setIsActiveIndex] = useState<number>(0);
-  // TODO: APIでカテゴリーに応じたデータを取得する
-  const handleClick = (index: number) => {
-    setIsActiveIndex(index);
-  };
-  console.log(props.blogs);
+  const router = useRouter();
+
   return (
     <Wrapper>
+      <div className='category-search'>
+        <button
+          onClick={() => {
+            alert('TODO: 気が向いたら実装する');
+          }}
+        >
+          エンジニア
+        </button>
+        <button>コンサルティング</button>
+        <button>マーケティング</button>
+        <button>デザイナー</button>
+        <button>広報</button>
+        <button>人事</button>
+        <button>スタートアップ</button>
+        <button>営業</button>
+        <button>EC</button>
+        <button>医療</button>
+        <button>建築</button>
+        <button>デジタルブランディング</button>
+      </div>
+
       <div className='banner'>
         <Image src={logo} alt='ロゴ' className='logo-image' />
       </div>
       <div className='blog-container'>
         <div className='title-category'>
           <h2>新着記事</h2>
-          {/* MEMO: 最初のリリース時はカテゴリー検索は不要 */}
-          <div className='categories'>
-            {ButtonLabel.map((i, index) => (
-              <div className='category ' key={i.id}>
-                <button
-                  className={isActiveIndex === index ? 'active' : ''}
-                  onClick={() => {
-                    handleClick(index);
-                  }}
-                >
-                  {i.name}
-                </button>
-              </div>
-            ))}
-            <div className='category'>
-              <button className='add-button'>
-                <PlusIcon />
-                もっと見る
-              </button>
-            </div>
+          {/* 記事一覧の詳細画面へ遷移させる+ページネーション */}
+          <div className='category'>
+            <button className='add-button'>
+              <PlusIcon />
+              もっと見る
+            </button>
           </div>
         </div>
         <div className='cards-container'>
-          {/* カード */}
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <img src='/mori-kyo.jpg' alt='' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
+          {props.blogs.map((blog) => (
+            <button
+              className='card-container'
+              key={blog.id}
+              onClick={() => {
+                router.push(`/${blog.id}`);
+              }}
+            >
+              <div className='card'>
+                <div className='card-image'>
+                  <img src={blog.acf.image01} alt='プロフィール画像' />
                 </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
+                <div className='card-title'>
+                  <p>{blog.title}</p>
                 </div>
-              </div>
-            </div>
-          </div>
-          {/* カード */}
-          {/* カード */}
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <img src='/haruka.jpg' alt='' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
-                </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
+                <div className='card-infos'>
+                  <div className='company-info'>
+                    <p className='personal-name'>
+                      {blog.acf.name} （{blog.acf.post}）
+                    </p>
+                    <p className='company-name'>{blog.acf.company_name}</p>
+                  </div>
+                  <div className='category-name'>
+                    <p>{blog.acf.category_name}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          {/* カード */}
-          {/* カード */}
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <Image src='/iidaken.jpg' width={324} height={196} alt='My avatar' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
-                </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* カード */}
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <Image src='/ogawa.jpg' width={324} height={196} alt='My avatar' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
-                </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* カード */}
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <Image src='/satomi.jpg' width={324} height={196} alt='My avatar' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
-                </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* カード */}
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <Image src='/nakazima.jpg' width={324} height={196} alt='My avatar' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
-                </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* カード */}
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <Image src='/nobuo.jpg' width={324} height={196} alt='My avatar' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
-                </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* カード */}
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <Image src='/kondou.jpg' width={324} height={196} alt='My avatar' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
-                </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* カード */}
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <Image src='/mako.jpg' width={324} height={196} alt='My avatar' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
-                </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* カード */}
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <Image src='/takamura.jpg' width={324} height={196} alt='My avatar' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
-                </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* カード */}
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <Image src='/kura.jpg' width={324} height={196} alt='My avatar' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
-                </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* カード */}
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <Image src='/naoto.jpg' width={324} height={196} alt='My avatar' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
-                </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* カード */}
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <Image src='/yumi.jpg' width={324} height={196} alt='My avatar' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
-                </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* カード */}
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <Image src='/meru.jpg' width={324} height={196} alt='My avatar' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
-                </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
-                </div>
-              </div>
-            </div>
-          </div>
+            </button>
+          ))}
         </div>
       </div>
     </Wrapper>
@@ -349,6 +90,20 @@ export const Blog: React.FC<Props> = (props) => {
 };
 
 const Wrapper = styled.div`
+  .category-search {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+    button {
+      background-color: #ffffff;
+      border: 1px solid #dfdfdf;
+      color: #27262e;
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 8px;
+    }
+  }
   .category-name {
     padding: 5px 12px;
     border-radius: 30px;
@@ -405,7 +160,15 @@ const Wrapper = styled.div`
     text-align: center;
     overflow: hidden;
     transition: transform 0.2s ease-out;
-    /* box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); */
+    @media (min-width: 765px) {
+      max-width: 100%;
+      height: 220px; /* 任意の高さを指定 */
+    }
+  }
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   .card-image:hover {
     transform: scale(1.05);

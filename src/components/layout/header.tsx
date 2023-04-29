@@ -10,7 +10,6 @@ export const Header: React.FC = () => {
   return (
     <Wrapper>
       <div className='logo'>
-        {/* ロゴのデザインを要検討 */}
         <Image src={logo} alt='ロゴ' width={80} height={60} className='logo-image' />
       </div>
       <div className='search-form'>
@@ -28,11 +27,22 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  @media (max-width: 765px) {
+    justify-content: center;
+  }
+  .log {
+    img {
+      height: 30px;
+      width: 100px;
+    }
+  }
   .logo-image {
     border-radius: 8px;
   }
   .search-form {
+    @media (max-width: 765px) {
+      display: none;
+    }
     position: relative;
     input {
       width: 400px;

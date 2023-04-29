@@ -7,7 +7,7 @@ export type BlogRepository = {
 };
 const getBlogs = async (): Promise<BlogType[]> => {
   const response = await WpApiClient.get(`/management_bookshelf`);
-  return response.data.map((i: any) => {
+  const blogs = response.data.map((i: any) => {
     return {
       id: i.id,
       date: i.date,
@@ -23,6 +23,12 @@ const getBlogs = async (): Promise<BlogType[]> => {
       }
     };
   });
+  return (
+    // Sort the blogs array by date in ascending order (oldest first)
+    blogs.sort((a: BlogType, b: BlogType) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    })
+  );
 };
 
 const getBlog = async (id: number): Promise<BlogType> => {
