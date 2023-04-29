@@ -53,7 +53,7 @@ export const Blog: React.FC<Props> = (props) => {
         </div>
         <div className='cards-container'>
           {props.blogs.map((blog) => (
-            <div className='card-container' key={blog.id}>
+            <button className='card-container' key={blog.id}>
               <div className='card'>
                 <div className='card-image'>
                   <img src={blog.acf.image01} alt='プロフィール画像' />
@@ -73,7 +73,7 @@ export const Blog: React.FC<Props> = (props) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>
