@@ -23,6 +23,7 @@ export const BlogDetail: React.FC<Props> = (props) => {
         <div className='title-container'>
           <h1>{props.blog.title}</h1>
         </div>
+        <div className='border' />
         <div className='post-data'>
           <p>{formatSlashYMD(new Date(props.blog.date))}</p>
         </div>
@@ -102,6 +103,24 @@ export const BlogDetail: React.FC<Props> = (props) => {
 };
 
 const Wrapper = styled.div`
+  /* blog内のブロックstyle */
+  .blog-container {
+    h2 {
+      margin: 48px 0 24px 0;
+      padding-left: 12px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #062a4a;
+      border-left: 4px solid #062a4a;
+    }
+  }
+  /* blog内のブロックstyle */
+
+  .border {
+    width: 100%;
+    border: 2px solid #062a4a;
+    margin: 24px 0;
+  }
   .recommended-articles {
     margin-top: 24px;
     h2 {
