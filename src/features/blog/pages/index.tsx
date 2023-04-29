@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import logo from '../../../../public/banner.png';
@@ -7,56 +7,48 @@ import { FaPlus } from 'react-icons/fa';
 
 // model
 import { BlogType } from '@/model/blog';
-// TODO: API側と合わせる
-const ButtonLabel = [
-  {
-    id: 1,
-    name: '全て'
-  },
-  { id: 2, name: 'エンジニア' },
-  { id: 3, name: 'デザイナー' },
-  { id: 4, name: 'マーケティング' }
-];
 
 type Props = {
   blogs: BlogType[];
 };
 
 export const Blog: React.FC<Props> = (props) => {
-  const [isActiveIndex, setIsActiveIndex] = useState<number>(0);
-  // TODO: APIでカテゴリーに応じたデータを取得する
-  const handleClick = (index: number) => {
-    setIsActiveIndex(index);
-  };
   console.log(props.blogs);
   return (
     <Wrapper>
+      <div className='category-search'>
+        <button
+          onClick={() => {
+            alert('TODO: 気が向いたら実装する');
+          }}
+        >
+          エンジニア
+        </button>
+        <button>コンサルティング</button>
+        <button>マーケティング</button>
+        <button>デザイナー</button>
+        <button>広報</button>
+        <button>人事</button>
+        <button>スタートアップ</button>
+        <button>営業</button>
+        <button>EC</button>
+        <button>医療</button>
+        <button>建築</button>
+        <button>デジタルブランディング</button>
+      </div>
+
       <div className='banner'>
         <Image src={logo} alt='ロゴ' className='logo-image' />
       </div>
       <div className='blog-container'>
         <div className='title-category'>
           <h2>新着記事</h2>
-          {/* MEMO: 最初のリリース時はカテゴリー検索は不要 */}
-          <div className='categories'>
-            {ButtonLabel.map((i, index) => (
-              <div className='category ' key={i.id}>
-                <button
-                  className={isActiveIndex === index ? 'active' : ''}
-                  onClick={() => {
-                    handleClick(index);
-                  }}
-                >
-                  {i.name}
-                </button>
-              </div>
-            ))}
-            <div className='category'>
-              <button className='add-button'>
-                <PlusIcon />
-                もっと見る
-              </button>
-            </div>
+          {/* 記事一覧の詳細画面へ遷移させる+ページネーション */}
+          <div className='category'>
+            <button className='add-button'>
+              <PlusIcon />
+              もっと見る
+            </button>
           </div>
         </div>
         <div className='cards-container'>
@@ -90,6 +82,20 @@ export const Blog: React.FC<Props> = (props) => {
 };
 
 const Wrapper = styled.div`
+  .category-search {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+    button {
+      background-color: #ffffff;
+      border: 1px solid #dfdfdf;
+      color: #27262e;
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 8px;
+    }
+  }
   .category-name {
     padding: 5px 12px;
     border-radius: 30px;
@@ -146,6 +152,10 @@ const Wrapper = styled.div`
     text-align: center;
     overflow: hidden;
     transition: transform 0.2s ease-out;
+    @media (min-width: 765px) {
+      max-width: 100%;
+      height: 220px; /* 任意の高さを指定 */
+    }
   }
   .card-image img {
     width: 100%;
