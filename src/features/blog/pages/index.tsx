@@ -7,13 +7,15 @@ import { FaPlus } from 'react-icons/fa';
 
 // model
 import { BlogType } from '@/model/blog';
+import { useRouter } from 'next/router';
 
 type Props = {
   blogs: BlogType[];
 };
 
 export const Blog: React.FC<Props> = (props) => {
-  console.log(props.blogs);
+  const router = useRouter();
+
   return (
     <Wrapper>
       <div className='category-search'>
@@ -53,7 +55,13 @@ export const Blog: React.FC<Props> = (props) => {
         </div>
         <div className='cards-container'>
           {props.blogs.map((blog) => (
-            <button className='card-container' key={blog.id}>
+            <button
+              className='card-container'
+              key={blog.id}
+              onClick={() => {
+                router.push(`/${blog.id}`);
+              }}
+            >
               <div className='card'>
                 <div className='card-image'>
                   <img src={blog.acf.image01} alt='プロフィール画像' />
