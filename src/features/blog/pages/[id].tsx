@@ -14,6 +14,7 @@ export const BlogDetail: React.FC<Props> = (props) => {
   const createMarkup = (htmlString: string) => {
     return { __html: htmlString };
   };
+  console.log(props.blog);
   return (
     <Wrapper>
       <div className='title-container'>
@@ -113,6 +114,30 @@ const Wrapper = styled.div`
       color: #062a4a;
       border-left: 4px solid #062a4a;
     }
+    h3 {
+      margin: 24px 0;
+      font-size: 16px;
+      font-weight: bold;
+      color: #062a4a;
+    }
+    p {
+      font-size: 16px;
+      color: #333333;
+      line-height: 2;
+    }
+    ul {
+      margin-bottom: 14px;
+      list-style-type: disc;
+      padding-left: 10px;
+    }
+    li {
+      line-height: 2;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
   /* blog内のブロックstyle */
 
@@ -149,10 +174,16 @@ const Wrapper = styled.div`
     font-weight: bold;
   }
   .image-container {
+    @media (max-width: 1024px) {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
     width: 100%;
     height: 500px;
     overflow: hidden;
     margin-top: 24px;
+
     img {
       width: 100%;
       height: 100%;
@@ -193,7 +224,15 @@ const Wrapper = styled.div`
     display: grid;
     gap: 24px;
     grid-template-columns: repeat(3, 1fr);
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 765px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
+
   .card-container {
     background-color: #ffffff;
     border-radius: 16px;
