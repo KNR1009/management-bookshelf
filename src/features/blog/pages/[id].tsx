@@ -1,20 +1,21 @@
 import React from 'react';
 // style
 import styled from 'styled-components';
-import Image from 'next/image';
 // model
 import { BlogType } from '@/model/blog';
 import { formatSlashYMD } from '@/utils/formatter';
+import { useRouter } from 'next/router';
 
 type Props = {
   blog: BlogType;
+  recommendations: BlogType[];
 };
 
 export const BlogDetail: React.FC<Props> = (props) => {
+  const router = useRouter();
   const createMarkup = (htmlString: string) => {
     return { __html: htmlString };
   };
-  console.log(props.blog);
   return (
     <Wrapper>
       <div className='title-container'>
@@ -39,64 +40,35 @@ export const BlogDetail: React.FC<Props> = (props) => {
       <div className='recommended-articles'>
         <h2>おすすめ記事</h2>
         <div className='cards-container'>
-          {/* カード */}
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <Image src='/mori-kyo.jpg' width={324} height={196} alt='My avatar' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
+          {props.recommendations.map((blog) => (
+            <button
+              className='card-container'
+              key={blog.id}
+              onClick={() => {
+                router.push(`/${blog.id}`);
+              }}
+            >
+              <div className='card'>
+                <div className='card-image'>
+                  <img src={blog.acf.image01} alt='プロフィール画像' />
                 </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
+                <div className='card-title'>
+                  <p>{blog.title}</p>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <Image src='/mori-kyo.jpg' width={324} height={196} alt='My avatar' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
-                </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
+                <div className='card-infos'>
+                  <div className='company-info'>
+                    <p className='personal-name'>
+                      {blog.acf.name} （{blog.acf.post}）
+                    </p>
+                    <p className='company-name'>{blog.acf.company_name}</p>
+                  </div>
+                  <div className='category-name'>
+                    <p>{blog.acf.category_name}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <Image src='/mori-kyo.jpg' width={324} height={196} alt='My avatar' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
-                </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
-                </div>
-              </div>
-            </div>
-          </div>
+            </button>
+          ))}
         </div>
       </div>
     </Wrapper>
@@ -233,6 +205,19 @@ const Wrapper = styled.div`
     }
   }
 
+  .cards-container {
+    margin-top: 24px;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 765px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
   .card-container {
     background-color: #ffffff;
     border-radius: 16px;
@@ -248,7 +233,15 @@ const Wrapper = styled.div`
     text-align: center;
     overflow: hidden;
     transition: transform 0.2s ease-out;
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+    @media (min-width: 765px) {
+      max-width: 100%;
+      height: 220px; /* 任意の高さを指定 */
+    }
+  }
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   .card-image:hover {
     transform: scale(1.05);
