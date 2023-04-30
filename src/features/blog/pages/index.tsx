@@ -107,9 +107,9 @@ const Wrapper = styled.div`
   .category-name {
     padding: 5px 12px;
     border-radius: 30px;
-    font-size: 14px;
-    color: #747475;
-    background-color: rgba(84, 41, 255, 0.1);
+    font-size: 12px;
+    color: #ffffff;
+    background-color: #032025;
   }
   .card-title {
     margin-top: 24px;

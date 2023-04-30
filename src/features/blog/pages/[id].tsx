@@ -134,7 +134,7 @@ const Wrapper = styled.div`
       line-height: 2;
     }
     img {
-      width: 100%;
+      /* width: 100%; */
       height: 100%;
       object-fit: cover;
     }
@@ -194,9 +194,9 @@ const Wrapper = styled.div`
   .category-name {
     padding: 5px 12px;
     border-radius: 30px;
-    font-size: 14px;
-    color: #747475;
-    background-color: rgba(84, 41, 255, 0.1);
+    font-size: 12px;
+    color: #ffffff;
+    background-color: #032025;
   }
   .card-title {
     margin-top: 24px;
