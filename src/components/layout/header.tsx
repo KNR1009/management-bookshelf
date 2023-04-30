@@ -5,13 +5,21 @@ import Image from 'next/image';
 import logo from '../../../public/logo.png';
 // icon
 import { FaSearch } from 'react-icons/fa';
+// hooks
+import { useRouter } from 'next/router';
 
 export const Header: React.FC = () => {
+  const router = useRouter();
   return (
     <Wrapper>
-      <div className='logo'>
+      <button
+        className='logo'
+        onClick={() => {
+          router.push('/');
+        }}
+      >
         <Image src={logo} alt='ロゴ' width={80} height={60} className='logo-image' />
-      </div>
+      </button>
       <div className='search-form'>
         <input type='text' placeholder='検索' />
         <SearchIcon />

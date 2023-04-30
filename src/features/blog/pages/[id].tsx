@@ -1,20 +1,26 @@
 import React from 'react';
 // style
 import styled from 'styled-components';
-import Image from 'next/image';
 // model
 import { BlogType } from '@/model/blog';
+import { useRouter } from 'next/router';
+
+// utils
 import { formatSlashYMD } from '@/utils/formatter';
+
+// icon
+import { FaTwitter, FaFacebookF, FaLink, FaExternalLinkAlt, FaLinkedin } from 'react-icons/fa';
 
 type Props = {
   blog: BlogType;
+  recommendations: BlogType[];
 };
 
 export const BlogDetail: React.FC<Props> = (props) => {
+  const router = useRouter();
   const createMarkup = (htmlString: string) => {
     return { __html: htmlString };
   };
-  console.log(props.blog);
   return (
     <Wrapper>
       <div className='title-container'>
@@ -36,74 +42,188 @@ export const BlogDetail: React.FC<Props> = (props) => {
       <div className='blog-container'>
         <div dangerouslySetInnerHTML={createMarkup(props.blog.content)} />
       </div>
+      <div className='company-info'>
+        <h2>会社情報</h2>
+        <Table>
+          <tbody>
+            <tr>
+              <TableCellLabel>会社名</TableCellLabel>
+              <TableCell>株式会社はてな</TableCell>
+            </tr>
+            <tr>
+              <TableCellLabel>事業内容</TableCellLabel>
+              <TableCell>コンサルティングサービス</TableCell>
+            </tr>
+            <tr>
+              <TableCellLabel>名前</TableCellLabel>
+              <TableCell>鈴木 通一</TableCell>
+            </tr>
+            <tr>
+              <TableCellLabel>役職</TableCellLabel>
+              <TableCell>執行役員</TableCell>
+            </tr>
+            <tr>
+              <TableCellLabel>設立</TableCellLabel>
+              <TableCell>2019年1月11日</TableCell>
+            </tr>
+            <tr>
+              <TableCellLabel>会社HP</TableCellLabel>
+              <TableCell>
+                <a href='https://exam.com' target='_blank' rel='noopener noreferrer'>
+                  https://exam.com
+                  <span>
+                    <FaExternalLinkAlt />
+                  </span>
+                </a>
+              </TableCell>
+            </tr>
+            <tr>
+              <TableCellLabel>各種リンク</TableCellLabel>
+              <TableCell>
+                {/* SNSリンク */}
+                <SocialMediaWrapper>
+                  <SocialMediaButton
+                    href='https://twitter.com/intent/tweet?url=<BLOG_POST_URL>&text=<BLOG_POST_TITLE>'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    bgColor='#1DA1F2'
+                  >
+                    <FaTwitter color='#ffffff' />
+                  </SocialMediaButton>
+                  <SocialMediaButton
+                    href='https://www.facebook.com/sharer/sharer.php?u=<BLOG_POST_URL>'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    bgColor='#1877F2'
+                  >
+                    <FaFacebookF color='#ffffff' />
+                  </SocialMediaButton>
+                  <SocialMediaButton
+                    href='<YOUR_COMPANY_WEBSITE_URL>'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    bgColor='#FF4B4B'
+                  >
+                    <FaLink color='#ffffff' />
+                  </SocialMediaButton>
+                  <SocialMediaButton
+                    href='https://www.facebook.com/sharer/sharer.php?u=<BLOG_POST_URL>'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    bgColor='#1877F2'
+                  >
+                    <FaLinkedin color='#ffffff' />
+                  </SocialMediaButton>
+                </SocialMediaWrapper>
+                {/* SNSリンク */}
+              </TableCell>
+            </tr>
+          </tbody>
+        </Table>
+      </div>
+
       <div className='recommended-articles'>
         <h2>おすすめ記事</h2>
         <div className='cards-container'>
-          {/* カード */}
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <Image src='/mori-kyo.jpg' width={324} height={196} alt='My avatar' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
+          {props.recommendations.map((blog) => (
+            <button
+              className='card-container'
+              key={blog.id}
+              onClick={() => {
+                router.push(`/${blog.id}`);
+              }}
+            >
+              <div className='card'>
+                <div className='card-image'>
+                  <img src={blog.acf.image01} alt='プロフィール画像' />
                 </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
+                <div className='card-title'>
+                  <p>{blog.title}</p>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <Image src='/mori-kyo.jpg' width={324} height={196} alt='My avatar' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
-                </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
+                <div className='card-infos'>
+                  <div className='company-info'>
+                    <p className='personal-name'>
+                      {blog.acf.name} （{blog.acf.post}）
+                    </p>
+                    <p className='company-name'>{blog.acf.company_name}</p>
+                  </div>
+                  <div className='category-name'>
+                    <p>{blog.acf.category_name}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className='card-container'>
-            <div className='card'>
-              <div className='card-image'>
-                <Image src='/mori-kyo.jpg' width={324} height={196} alt='My avatar' />
-              </div>
-              <div className='card-title'>
-                <p>急成長のITスターアップで成長を目指す</p>
-              </div>
-              <div className='card-infos'>
-                <div className='company-info'>
-                  <p className='personal-name'>高田信彦 （経営者）</p>
-                  <p className='company-name'>株式会社 メディアリンク</p>
-                </div>
-                <div className='category-name'>
-                  <p>エンジニア</p>
-                </div>
-              </div>
-            </div>
-          </div>
+            </button>
+          ))}
         </div>
       </div>
     </Wrapper>
   );
 };
 
+// SNSリンク
+const SocialMediaWrapper = styled.div`
+  display: flex;
+`;
+
+type SocialMediaButtonProps = {
+  bgColor: string;
+};
+
+const SocialMediaButton = styled.a<SocialMediaButtonProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: ${({ bgColor }) => bgColor};
+  margin: 0 10px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  & i {
+    color: #fff;
+    font-size: 20px;
+  }
+`;
+
+// 会社情報
+const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+`;
+
+const TableCell = styled.td`
+  padding: 16px;
+  border: 1px solid #ccc;
+  text-align: left;
+  color: #333333;
+  span {
+    margin-left: 10px;
+  }
+`;
+
+const TableCellLabel = styled(TableCell)`
+  font-weight: bold;
+  background-color: #f2f2f2;
+`;
+// 本文
+
 const Wrapper = styled.div`
+  .company-info {
+    margin-top: 48px;
+    h2 {
+      margin: 48px 0 24px 0;
+      font-size: 24px;
+      font-weight: bold;
+      color: #062a4a;
+    }
+  }
   /* blog内のブロックstyle */
   .blog-container {
     h2 {
@@ -134,7 +254,7 @@ const Wrapper = styled.div`
       line-height: 2;
     }
     img {
-      width: 100%;
+      /* width: 100%; */
       height: 100%;
       object-fit: cover;
     }
@@ -194,9 +314,9 @@ const Wrapper = styled.div`
   .category-name {
     padding: 5px 12px;
     border-radius: 30px;
-    font-size: 14px;
-    color: #747475;
-    background-color: rgba(84, 41, 255, 0.1);
+    font-size: 12px;
+    color: #ffffff;
+    background-color: #032025;
   }
   .card-title {
     margin-top: 24px;
@@ -233,6 +353,19 @@ const Wrapper = styled.div`
     }
   }
 
+  .cards-container {
+    margin-top: 24px;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 765px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
   .card-container {
     background-color: #ffffff;
     border-radius: 16px;
@@ -248,7 +381,15 @@ const Wrapper = styled.div`
     text-align: center;
     overflow: hidden;
     transition: transform 0.2s ease-out;
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+    @media (min-width: 765px) {
+      max-width: 100%;
+      height: 220px; /* 任意の高さを指定 */
+    }
+  }
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   .card-image:hover {
     transform: scale(1.05);
