@@ -1,5 +1,5 @@
 // import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import type { NextPage } from 'next';
+import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 // page
 import { BlogDetail } from '@/features/blog/pages/[id]';
 // components
@@ -7,22 +7,23 @@ import { Layout } from '@/components/layout';
 import { useRouter } from 'next/router';
 
 import Head from 'next/head';
-// import { BlogFactory, BlogType } from '@/model/blog';
-// import { RecommendationFactory } from '@/model/recommendation';
-import { useFetchBlog } from '@/features/blog/hooks';
-import { useFetchRecommendations } from '@/features/recommendation/hooks';
 
-// type Props = {
-//   blog: BlogType;
-//   recommendations: BlogType[];
-// };
+// import { useFetchBlog } from '@/features/blog/hooks';
+// import { useFetchRecommendations } from '@/features/recommendation/hooks';
+import { BlogFactory, BlogType } from '@/model/blog';
+import { RecommendationFactory } from '@/model/recommendation';
 
-const Home: NextPage = () => {
+type Props = {
+  blog: BlogType;
+  recommendations: BlogType[];
+};
+
+const Home: NextPage<Props> = ({ blog, recommendations }) => {
   const router = useRouter();
   const currentUrl = process.browser ? window.location.origin + router.asPath : '';
 
-  const { blog } = useFetchBlog(Number(router.query.id));
-  const { recommendations } = useFetchRecommendations();
+  // const { blog } = useFetchBlog(Number(router.query.id));
+  // const { recommendations } = useFetchRecommendations();
 
   return (
     <Layout>
@@ -60,30 +61,36 @@ const Home: NextPage = () => {
   );
 };
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const blogs = await BlogFactory().index();
-//   const paths = blogs.map((blog: BlogType) => ({ params: { id: blog.id.toString() } }));
+export const getStaticPaths: GetStaticPaths = async () => {
+  // TODO: 100件以上の投稿には対応できないのでどうにかする
+  const blogs = await BlogFactory().index();
+  const paths = blogs.map((data) => {
+    return {
+      params: {
+        id: String(data.id)
+      }
+    };
+  });
 
-//   return { paths, fallback: false };
-// };
+  return {
+    paths: paths,
+    fallback: false
+  };
+};
 
-// export const getStaticProps: GetStaticProps<Props, { id: string }> = async ({ params }) => {
-//   const id = params?.id;
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { id } = context.params as {
+    id: string;
+  };
+  const blog = await BlogFactory().show(Number(id));
+  const recommendations = await RecommendationFactory().index();
 
-//   if (!id) {
-//     return { notFound: true };
-//   }
-
-//   try {
-//     const [blog, recommendations] = await Promise.all([
-//       BlogFactory().show(Number(id)),
-//       RecommendationFactory().index()
-//     ]);
-//     return { props: { blog, recommendations }, revalidate: 60 };
-//   } catch (error) {
-//     console.error(error);
-//     return { notFound: true };
-//   }
-// };
+  return {
+    props: {
+      blog: blog,
+      recommendations: recommendations
+    }
+  };
+};
 
 export default Home;
