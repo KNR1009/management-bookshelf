@@ -3,8 +3,13 @@ import React from 'react';
 import styled from 'styled-components';
 // model
 import { BlogType } from '@/model/blog';
-import { formatSlashYMD } from '@/utils/formatter';
 import { useRouter } from 'next/router';
+
+// utils
+import { formatSlashYMD } from '@/utils/formatter';
+
+// icon
+import { FaTwitter, FaFacebookF, FaLink, FaExternalLinkAlt, FaLinkedin } from 'react-icons/fa';
 
 type Props = {
   blog: BlogType;
@@ -37,6 +42,86 @@ export const BlogDetail: React.FC<Props> = (props) => {
       <div className='blog-container'>
         <div dangerouslySetInnerHTML={createMarkup(props.blog.content)} />
       </div>
+      <div className='company-info'>
+        <h2>会社情報</h2>
+        <Table>
+          <tbody>
+            <tr>
+              <TableCellLabel>会社名</TableCellLabel>
+              <TableCell>株式会社はてな</TableCell>
+            </tr>
+            <tr>
+              <TableCellLabel>事業内容</TableCellLabel>
+              <TableCell>コンサルティングサービス</TableCell>
+            </tr>
+            <tr>
+              <TableCellLabel>名前</TableCellLabel>
+              <TableCell>鈴木 通一</TableCell>
+            </tr>
+            <tr>
+              <TableCellLabel>役職</TableCellLabel>
+              <TableCell>執行役員</TableCell>
+            </tr>
+            <tr>
+              <TableCellLabel>設立</TableCellLabel>
+              <TableCell>2019年1月11日</TableCell>
+            </tr>
+            <tr>
+              <TableCellLabel>会社HP</TableCellLabel>
+              <TableCell>
+                <a href='https://exam.com' target='_blank' rel='noopener noreferrer'>
+                  https://exam.com
+                  <span>
+                    <FaExternalLinkAlt />
+                  </span>
+                </a>
+              </TableCell>
+            </tr>
+            <tr>
+              <TableCellLabel>各種リンク</TableCellLabel>
+              <TableCell>
+                {/* SNSリンク */}
+                <SocialMediaWrapper>
+                  <SocialMediaButton
+                    href='https://twitter.com/intent/tweet?url=<BLOG_POST_URL>&text=<BLOG_POST_TITLE>'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    bgColor='#1DA1F2'
+                  >
+                    <FaTwitter color='#ffffff' />
+                  </SocialMediaButton>
+                  <SocialMediaButton
+                    href='https://www.facebook.com/sharer/sharer.php?u=<BLOG_POST_URL>'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    bgColor='#1877F2'
+                  >
+                    <FaFacebookF color='#ffffff' />
+                  </SocialMediaButton>
+                  <SocialMediaButton
+                    href='<YOUR_COMPANY_WEBSITE_URL>'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    bgColor='#FF4B4B'
+                  >
+                    <FaLink color='#ffffff' />
+                  </SocialMediaButton>
+                  <SocialMediaButton
+                    href='https://www.facebook.com/sharer/sharer.php?u=<BLOG_POST_URL>'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    bgColor='#1877F2'
+                  >
+                    <FaLinkedin color='#ffffff' />
+                  </SocialMediaButton>
+                </SocialMediaWrapper>
+                {/* SNSリンク */}
+              </TableCell>
+            </tr>
+          </tbody>
+        </Table>
+      </div>
+
       <div className='recommended-articles'>
         <h2>おすすめ記事</h2>
         <div className='cards-container'>
@@ -75,7 +160,70 @@ export const BlogDetail: React.FC<Props> = (props) => {
   );
 };
 
+// SNSリンク
+const SocialMediaWrapper = styled.div`
+  display: flex;
+`;
+
+type SocialMediaButtonProps = {
+  bgColor: string;
+};
+
+const SocialMediaButton = styled.a<SocialMediaButtonProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: ${({ bgColor }) => bgColor};
+  margin: 0 10px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  & i {
+    color: #fff;
+    font-size: 20px;
+  }
+`;
+
+// 会社情報
+const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+`;
+
+const TableCell = styled.td`
+  padding: 16px;
+  border: 1px solid #ccc;
+  text-align: left;
+  color: #333333;
+  span {
+    margin-left: 10px;
+  }
+`;
+
+const TableCellLabel = styled(TableCell)`
+  font-weight: bold;
+  background-color: #f2f2f2;
+`;
+// 本文
+
 const Wrapper = styled.div`
+  .company-info {
+    margin-top: 48px;
+    h2 {
+      margin: 48px 0 24px 0;
+      font-size: 24px;
+      font-weight: bold;
+      color: #062a4a;
+    }
+  }
   /* blog内のブロックstyle */
   .blog-container {
     h2 {
