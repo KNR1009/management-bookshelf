@@ -64,10 +64,10 @@ const Home: NextPage<Props> = ({ blog, recommendations }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   // TODO: 100件以上の投稿には対応できないのでどうにかする
   const blogs = await BlogFactory().index();
-  const paths = blogs.map((data) => {
+  const paths = blogs.map((blog) => {
     return {
       params: {
-        id: String(data.id)
+        id: String(blog.id)
       }
     };
   });
