@@ -1,20 +1,21 @@
-import type { NextPage } from 'next';
+import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 // page
 import { BlogDetail } from '@/features/blog/pages/[id]';
 // components
 import { Layout } from '@/components/layout';
 import { useRouter } from 'next/router';
-// hooks
-import { useFetchBlog } from '@/features/blog/hooks';
-import { useFetchRecommendations } from '@/features/recommendation/hooks';
 
 import Head from 'next/head';
+import { BlogFactory, BlogType } from '@/model/blog';
+import { RecommendationFactory } from '@/model/recommendation';
 
-const Home: NextPage = () => {
+type Props = {
+  blog: BlogType;
+  recommendations: BlogType[];
+};
+
+const Home: NextPage<Props> = ({ blog, recommendations }) => {
   const router = useRouter();
-
-  const { blog } = useFetchBlog(Number(router.query.id));
-  const { recommendations } = useFetchRecommendations();
 
   const currentUrl = process.browser ? window.location.origin + router.asPath : '';
 
@@ -52,6 +53,31 @@ const Home: NextPage = () => {
       )}
     </Layout>
   );
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const blogs = await BlogFactory().index();
+  const paths = blogs.map((blog: any) => ({ params: { id: blog.id.toString() } }));
+
+  return { paths, fallback: 'blocking' };
+};
+
+export const getStaticProps: GetStaticProps<Props, { id: string }> = async ({ params }) => {
+  const id = params?.id;
+  if (!id) {
+    return { notFound: true };
+  }
+
+  try {
+    const [blog, recommendations] = await Promise.all([
+      BlogFactory().show(Number(id)),
+      RecommendationFactory().index()
+    ]);
+    return { props: { blog, recommendations }, revalidate: 60 };
+  } catch (error) {
+    console.error(error);
+    return { notFound: true };
+  }
 };
 
 export default Home;
