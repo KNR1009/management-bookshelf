@@ -1,6 +1,6 @@
 import axios from 'axios';
 // const baseURL = process.env.NEXT_PUBLIC_APP_API_ENDPOINT || '';
-const baseURL = 'https://management-bookshelf-admin.com/wp-json/wp/v2';
+const baseURL = process.env.NEXT_PUBLIC_APP_API_ENDPOINT || '';
 
 /**
  * FrontApiClient
