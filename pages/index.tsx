@@ -1,4 +1,4 @@
-import type { NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
 // page
 import { Blog } from '@/features/blog/pages';
 // components
@@ -65,25 +65,14 @@ const Home: NextPage<Props> = ({ blogs }) => {
   );
 };
 
-// export const getStaticProps: GetStaticProps<Props> = async () => {
-//   try {
-//     const blogs = await BlogFactory().index();
-//     return { props: { blogs }, revalidate: 60 };
-//   } catch (error) {
-//     console.error(error);
-//     return { props: { blogs: [] }, revalidate: 60 };
-//   }
-// };
-
-// pages/index.js
-export async function getStaticProps({ preview = false }) {
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
   try {
     const blogs = await BlogFactory().index();
-    return { props: { blogs, preview }, revalidate: 10 };
+    return { props: { blogs } };
   } catch (error) {
     console.error(error);
-    return { props: { blogs: [] }, revalidate: 10 };
+    return { props: { blogs: [] } };
   }
-}
+};
 
 export default Home;
