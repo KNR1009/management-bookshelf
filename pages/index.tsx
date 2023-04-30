@@ -1,4 +1,4 @@
-import type { GetServerSideProps, NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 // page
 import { Blog } from '@/features/blog/pages';
 // components
@@ -7,7 +7,8 @@ import { Layout } from '@/components/layout';
 // Head
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { BlogFactory, BlogType } from '@/model/blog';
+import { BlogType } from '@/model/blog';
+import axios from 'axios';
 
 type Props = {
   blogs: BlogType[];
@@ -65,13 +66,31 @@ const Home: NextPage<Props> = ({ blogs }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   try {
-    const blogs = await BlogFactory().index();
-    return { props: { blogs } };
+    // const blogs = await BlogFactory().index();
+    const response = await axios.get('https://management-bookshelf-admin.com/wp-json/wp/v2/management_bookshelf');
+
+    const blogs = response.data.map((i: any) => {
+      return {
+        id: i.id,
+        date: i.date,
+        title: i.title.rendered,
+        content: i.content.rendered,
+        acf: {
+          company_name: i.acf.category_name,
+          post: i.acf.post,
+          name: i.acf.name,
+          image01: String(i.acf.image01),
+          image02: String(i.acf.image02),
+          category_name: i.acf.category_name
+        }
+      };
+    });
+    return { props: { blogs }, revalidate: 60 };
   } catch (error) {
     console.error(error);
-    return { props: { blogs: [] } };
+    return { props: { blogs: [] }, revalidate: 60 };
   }
 };
 

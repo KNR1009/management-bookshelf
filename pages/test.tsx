@@ -1,7 +1,5 @@
 import type { GetServerSideProps, NextPage } from 'next';
 
-import { useRouter } from 'next/router';
-
 import axios from 'axios';
 
 const Home: NextPage = (props) => {
