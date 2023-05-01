@@ -1,4 +1,4 @@
-import type { NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 // page
 import { Blog } from '@/features/blog/pages';
 // components
@@ -7,17 +7,17 @@ import { Layout } from '@/components/layout';
 // Head
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-// import { BlogFactory, BlogType } from '@/model/blog';
-import { useFetchBlogs } from '@/features/blog/hooks';
+import { BlogFactory, BlogType } from '@/model/blog';
+// import { useFetchBlogs } from '@/features/blog/hooks';
 
-// type Props = {
-//   blogs: BlogType[];
-// };
+type Props = {
+  blogs: BlogType[];
+};
 
-const Home: NextPage = () => {
+const Home: NextPage<Props> = ({ blogs }) => {
   const router = useRouter();
   const currentUrl = process.browser ? window.location.origin + router.asPath : '';
-  const { blogs } = useFetchBlogs();
+  // const { blogs } = useFetchBlogs();
 
   return (
     <Layout>
@@ -66,14 +66,14 @@ const Home: NextPage = () => {
   );
 };
 
-// export const getStaticProps: GetStaticProps<Props> = async () => {
-//   try {
-//     const blogs = await BlogFactory().index();
-//     return { props: { blogs }, revalidate: 60 };
-//   } catch (error) {
-//     console.error(error);
-//     return { props: { blogs: [] }, revalidate: 60 };
-//   }
-// };
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  try {
+    const blogs = await BlogFactory().index();
+    return { props: { blogs }, revalidate: 60 };
+  } catch (error) {
+    console.error(error);
+    return { props: { blogs: [] }, revalidate: 60 };
+  }
+};
 
 export default Home;
