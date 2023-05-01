@@ -19,6 +19,7 @@ const Home: NextPage<Props> = ({ blogs }) => {
   const currentUrl = process.browser ? window.location.origin + router.asPath : '';
   // const { blogs } = useFetchBlogs();
 
+  console.log(blogs);
   return (
     <Layout>
       {blogs && (
