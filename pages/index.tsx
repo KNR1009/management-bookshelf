@@ -7,16 +7,17 @@ import { Layout } from '@/components/layout';
 // Head
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-// import { BlogFactory, BlogType } from '@/model/blog';
-import axios from 'axios';
-import { useFetchBlogs } from '@/features/blog/hooks';
+import { BlogFactory, BlogType } from '@/model/blog';
 // import { useFetchBlogs } from '@/features/blog/hooks';
 
-const Home: NextPage = (props) => {
+type Props = {
+  blogs: BlogType[];
+};
+
+const Home: NextPage<Props> = ({ blogs }) => {
   const router = useRouter();
-  console.log(props);
   const currentUrl = process.browser ? window.location.origin + router.asPath : '';
-  const { blogs } = useFetchBlogs();
+  // const { blogs } = useFetchBlogs();
 
   return (
     <Layout>
@@ -65,10 +66,10 @@ const Home: NextPage = (props) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   try {
-    const { data } = await axios.get('https://developers-blog.third-scope-dev.com/wp-json/wp/v2/posts');
-    return { props: { data }, revalidate: 60 };
+    const blogs = await BlogFactory().index();
+    return { props: { blogs }, revalidate: 60 };
   } catch (error) {
     console.error(error);
     return { props: { blogs: [] }, revalidate: 60 };
