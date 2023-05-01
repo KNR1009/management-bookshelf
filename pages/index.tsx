@@ -8,7 +8,6 @@ import { Layout } from '@/components/layout';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { BlogFactory, BlogType } from '@/model/blog';
-// import { useFetchBlogs } from '@/features/blog/hooks';
 
 type Props = {
   blogs: BlogType[];
@@ -17,7 +16,6 @@ type Props = {
 const Home: NextPage<Props> = ({ blogs }) => {
   const router = useRouter();
   const currentUrl = process.browser ? window.location.origin + router.asPath : '';
-  // const { blogs } = useFetchBlogs();
 
   return (
     <Layout>
