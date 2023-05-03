@@ -37,6 +37,7 @@ const Home: NextPage<Props> = ({ blog, recommendations }) => {
             <meta property='og:url' content={currentUrl} />
             <meta property='og:image' content={blog.acf.image01} />
             <meta name='twitter:card' content='summary_large_image' />
+            <meta name='twitter:site' content='@MacopeninSUTABA' />
             <meta name='twitter:title' content={blog.title} />
             <meta
               name='twitter:description'
