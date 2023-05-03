@@ -38,10 +38,7 @@ const Home: NextPage<Props> = ({ blogs }) => {
               property='og:image'
               content='https://management-bookshelf-admin.com/wp-content/uploads/2023/05/logo.png'
             />
-            <meta
-              name='twitter:card'
-              content='https://management-bookshelf-admin.com/wp-content/uploads/2023/05/logo.png'
-            />
+            <meta name='twitter:card' content='summary_large_image' />
             <meta
               name='twitter:site'
               content='@MacopeninSUTABA
