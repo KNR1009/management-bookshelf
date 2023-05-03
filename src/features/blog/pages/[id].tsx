@@ -219,14 +219,14 @@ const Wrapper = styled.div`
     }
     h3 {
       margin: 24px 0;
-      font-size: 16px;
+      font-size: 20px;
       font-weight: bold;
       color: #062a4a;
     }
     p {
       font-size: 16px;
       color: #333333;
-      line-height: 2;
+      line-height: 2.5;
     }
     ul {
       margin-bottom: 14px;
@@ -235,6 +235,10 @@ const Wrapper = styled.div`
     }
     li {
       line-height: 2;
+    }
+    ol {
+      list-style-type: decimal; /* 番号のスタイルを指定する */
+      padding-left: 20px;
     }
     img {
       /* width: 100%; */
