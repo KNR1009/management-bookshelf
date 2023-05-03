@@ -12,6 +12,13 @@ export type BlogType = {
     image01: string;
     image02: string;
     category_name: string;
+    twitter: string;
+    facebook: string;
+    linkedin: string;
+    other_link: string;
+    business: string;
+    establishment: string;
+    company_hp: string;
   };
 };
 

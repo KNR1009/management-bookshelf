@@ -48,72 +48,81 @@ export const BlogDetail: React.FC<Props> = (props) => {
           <tbody>
             <tr>
               <TableCellLabel>会社名</TableCellLabel>
-              <TableCell>株式会社はてな</TableCell>
+              <TableCell>
+                {props.blog.acf.company_hp === '' ? (
+                  <> {props.blog.acf.company_name}</>
+                ) : (
+                  <a href={props.blog.acf.company_hp} target='_blank' rel='noopener noreferrer'>
+                    {props.blog.acf.company_name}
+                    <span>
+                      <FaExternalLinkAlt />
+                    </span>
+                  </a>
+                )}
+              </TableCell>
             </tr>
             <tr>
               <TableCellLabel>事業内容</TableCellLabel>
-              <TableCell>コンサルティングサービス</TableCell>
+              <TableCell>{props.blog.acf.business}</TableCell>
             </tr>
             <tr>
               <TableCellLabel>名前</TableCellLabel>
-              <TableCell>鈴木 通一</TableCell>
+              <TableCell>{props.blog.acf.name}</TableCell>
             </tr>
             <tr>
               <TableCellLabel>役職</TableCellLabel>
-              <TableCell>執行役員</TableCell>
+              <TableCell>{props.blog.acf.post}</TableCell>
             </tr>
             <tr>
               <TableCellLabel>設立</TableCellLabel>
-              <TableCell>2019年1月11日</TableCell>
+              <TableCell>{props.blog.acf.establishment}</TableCell>
             </tr>
-            <tr>
-              <TableCellLabel>会社HP</TableCellLabel>
-              <TableCell>
-                <a href='https://exam.com' target='_blank' rel='noopener noreferrer'>
-                  https://exam.com
-                  <span>
-                    <FaExternalLinkAlt />
-                  </span>
-                </a>
-              </TableCell>
-            </tr>
+
             <tr>
               <TableCellLabel>各種リンク</TableCellLabel>
               <TableCell>
                 {/* SNSリンク */}
                 <SocialMediaWrapper>
-                  <SocialMediaButton
-                    href='https://twitter.com/intent/tweet?url=<BLOG_POST_URL>&text=<BLOG_POST_TITLE>'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    bgColor='#1DA1F2'
-                  >
-                    <FaTwitter color='#ffffff' />
-                  </SocialMediaButton>
-                  <SocialMediaButton
-                    href='https://www.facebook.com/sharer/sharer.php?u=<BLOG_POST_URL>'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    bgColor='#1877F2'
-                  >
-                    <FaFacebookF color='#ffffff' />
-                  </SocialMediaButton>
-                  <SocialMediaButton
-                    href='<YOUR_COMPANY_WEBSITE_URL>'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    bgColor='#FF4B4B'
-                  >
-                    <FaLink color='#ffffff' />
-                  </SocialMediaButton>
-                  <SocialMediaButton
-                    href='https://www.facebook.com/sharer/sharer.php?u=<BLOG_POST_URL>'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    bgColor='#1877F2'
-                  >
-                    <FaLinkedin color='#ffffff' />
-                  </SocialMediaButton>
+                  {props.blog.acf.twitter !== '' && (
+                    <SocialMediaButton
+                      href={props.blog.acf.twitter}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      bgColor='#1DA1F2'
+                    >
+                      <FaTwitter color='#ffffff' />
+                    </SocialMediaButton>
+                  )}
+                  {props.blog.acf.facebook !== '' && (
+                    <SocialMediaButton
+                      href={props.blog.acf.facebook}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      bgColor='#1877F2'
+                    >
+                      <FaFacebookF color='#ffffff' />
+                    </SocialMediaButton>
+                  )}
+                  {props.blog.acf.company_hp !== '' && (
+                    <SocialMediaButton
+                      href='<YOUR_COMPANY_WEBSITE_URL>'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      bgColor='#FF4B4B'
+                    >
+                      <FaLink color='#ffffff' />
+                    </SocialMediaButton>
+                  )}
+                  {props.blog.acf.linkedin !== '' && (
+                    <SocialMediaButton
+                      href='https://www.facebook.com/sharer/sharer.php?u=<BLOG_POST_URL>'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      bgColor='#1877F2'
+                    >
+                      <FaLinkedin color='#ffffff' />
+                    </SocialMediaButton>
+                  )}
                 </SocialMediaWrapper>
                 {/* SNSリンク */}
               </TableCell>
