@@ -1,6 +1,7 @@
 import { BlogType } from '@/model/blog';
 import { formatSlashYMD } from '@/utils/formatter';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
+
 import React from 'react';
 import styled from 'styled-components';
 
@@ -8,35 +9,32 @@ type Props = {
   blog: BlogType;
 };
 export const Card: React.FC<Props> = ({ blog }) => {
-  const router = useRouter();
   return (
-    <CardContainer
-      onClick={() => {
-        router.push(`/${blog.id}`);
-      }}
-    >
-      <div className='card'>
-        <div className='card-image'>
-          <img src={blog.acf.image01} alt='プロフィール画像' />
-        </div>
-        <div className='card-data'>
-          <p>{formatSlashYMD(new Date(blog.date))}</p>
-        </div>
-        <div className='card-title'>
-          <p>{blog.title}</p>
-        </div>
-        <div className='card-infos'>
-          <div className='company-info'>
-            <p className='personal-name'>
-              {blog.acf.name} （{blog.acf.post}）
-            </p>
-            <p className='company-name'>{blog.acf.company_name}</p>
+    <CardContainer>
+      <Link href={`/${blog.id}`}>
+        <div className='card'>
+          <div className='card-image'>
+            <img src={blog.acf.image01} alt='プロフィール画像' />
           </div>
-          <div className='category-name'>
-            <p>{blog.acf.category_name}</p>
+          <div className='card-data'>
+            <p>{formatSlashYMD(new Date(blog.date))}</p>
+          </div>
+          <div className='card-title'>
+            <p>{blog.title}</p>
+          </div>
+          <div className='card-infos'>
+            <div className='company-info'>
+              <p className='personal-name'>
+                {blog.acf.name} （{blog.acf.post}）
+              </p>
+              <p className='company-name'>{blog.acf.company_name}</p>
+            </div>
+            <div className='category-name'>
+              <p>{blog.acf.category_name}</p>
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
     </CardContainer>
   );
 };
