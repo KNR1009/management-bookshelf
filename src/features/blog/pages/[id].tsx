@@ -238,6 +238,7 @@ const Wrapper = styled.div`
     }
     ol {
       list-style-type: decimal; /* 番号のスタイルを指定する */
+      padding-left: 20px;
     }
     img {
       /* width: 100%; */
