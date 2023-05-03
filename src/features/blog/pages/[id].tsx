@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 // model
 import { BlogType } from '@/model/blog';
-import { useRouter } from 'next/router';
 
 // utils
 import { formatSlashYMD } from '@/utils/formatter';
@@ -11,13 +10,15 @@ import { formatSlashYMD } from '@/utils/formatter';
 // icon
 import { FaTwitter, FaFacebookF, FaLink, FaExternalLinkAlt, FaLinkedin } from 'react-icons/fa';
 
+// components
+import { Card } from '@/components/card';
+
 type Props = {
   blog: BlogType;
   recommendations: BlogType[];
 };
 
 export const BlogDetail: React.FC<Props> = (props) => {
-  const router = useRouter();
   const createMarkup = (htmlString: string) => {
     return { __html: htmlString };
   };
@@ -48,72 +49,81 @@ export const BlogDetail: React.FC<Props> = (props) => {
           <tbody>
             <tr>
               <TableCellLabel>会社名</TableCellLabel>
-              <TableCell>株式会社はてな</TableCell>
+              <TableCell>
+                {props.blog.acf.company_hp === '' ? (
+                  <> {props.blog.acf.company_name}</>
+                ) : (
+                  <a href={props.blog.acf.company_hp} target='_blank' rel='noopener noreferrer'>
+                    {props.blog.acf.company_name}
+                    <span>
+                      <FaExternalLinkAlt />
+                    </span>
+                  </a>
+                )}
+              </TableCell>
             </tr>
             <tr>
               <TableCellLabel>事業内容</TableCellLabel>
-              <TableCell>コンサルティングサービス</TableCell>
+              <TableCell>{props.blog.acf.business}</TableCell>
             </tr>
             <tr>
               <TableCellLabel>名前</TableCellLabel>
-              <TableCell>鈴木 通一</TableCell>
+              <TableCell>{props.blog.acf.name}</TableCell>
             </tr>
             <tr>
               <TableCellLabel>役職</TableCellLabel>
-              <TableCell>執行役員</TableCell>
+              <TableCell>{props.blog.acf.post}</TableCell>
             </tr>
             <tr>
               <TableCellLabel>設立</TableCellLabel>
-              <TableCell>2019年1月11日</TableCell>
+              <TableCell>{props.blog.acf.establishment}</TableCell>
             </tr>
-            <tr>
-              <TableCellLabel>会社HP</TableCellLabel>
-              <TableCell>
-                <a href='https://exam.com' target='_blank' rel='noopener noreferrer'>
-                  https://exam.com
-                  <span>
-                    <FaExternalLinkAlt />
-                  </span>
-                </a>
-              </TableCell>
-            </tr>
+
             <tr>
               <TableCellLabel>各種リンク</TableCellLabel>
               <TableCell>
                 {/* SNSリンク */}
                 <SocialMediaWrapper>
-                  <SocialMediaButton
-                    href='https://twitter.com/intent/tweet?url=<BLOG_POST_URL>&text=<BLOG_POST_TITLE>'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    bgColor='#1DA1F2'
-                  >
-                    <FaTwitter color='#ffffff' />
-                  </SocialMediaButton>
-                  <SocialMediaButton
-                    href='https://www.facebook.com/sharer/sharer.php?u=<BLOG_POST_URL>'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    bgColor='#1877F2'
-                  >
-                    <FaFacebookF color='#ffffff' />
-                  </SocialMediaButton>
-                  <SocialMediaButton
-                    href='<YOUR_COMPANY_WEBSITE_URL>'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    bgColor='#FF4B4B'
-                  >
-                    <FaLink color='#ffffff' />
-                  </SocialMediaButton>
-                  <SocialMediaButton
-                    href='https://www.facebook.com/sharer/sharer.php?u=<BLOG_POST_URL>'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    bgColor='#1877F2'
-                  >
-                    <FaLinkedin color='#ffffff' />
-                  </SocialMediaButton>
+                  {props.blog.acf.twitter !== '' && (
+                    <SocialMediaButton
+                      href={props.blog.acf.twitter}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      bgColor='#1DA1F2'
+                    >
+                      <FaTwitter color='#ffffff' />
+                    </SocialMediaButton>
+                  )}
+                  {props.blog.acf.facebook !== '' && (
+                    <SocialMediaButton
+                      href={props.blog.acf.facebook}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      bgColor='#1877F2'
+                    >
+                      <FaFacebookF color='#ffffff' />
+                    </SocialMediaButton>
+                  )}
+                  {props.blog.acf.company_hp !== '' && (
+                    <SocialMediaButton
+                      href='<YOUR_COMPANY_WEBSITE_URL>'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      bgColor='#FF4B4B'
+                    >
+                      <FaLink color='#ffffff' />
+                    </SocialMediaButton>
+                  )}
+                  {props.blog.acf.linkedin !== '' && (
+                    <SocialMediaButton
+                      href='https://www.facebook.com/sharer/sharer.php?u=<BLOG_POST_URL>'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      bgColor='#1877F2'
+                    >
+                      <FaLinkedin color='#ffffff' />
+                    </SocialMediaButton>
+                  )}
                 </SocialMediaWrapper>
                 {/* SNSリンク */}
               </TableCell>
@@ -121,38 +131,11 @@ export const BlogDetail: React.FC<Props> = (props) => {
           </tbody>
         </Table>
       </div>
-
       <div className='recommended-articles'>
         <h2>おすすめ記事</h2>
         <div className='cards-container'>
           {props.recommendations.map((blog) => (
-            <button
-              className='card-container'
-              key={blog.id}
-              onClick={() => {
-                router.push(`/${blog.id}`);
-              }}
-            >
-              <div className='card'>
-                <div className='card-image'>
-                  <img src={blog.acf.image01} alt='プロフィール画像' />
-                </div>
-                <div className='card-title'>
-                  <p>{blog.title}</p>
-                </div>
-                <div className='card-infos'>
-                  <div className='company-info'>
-                    <p className='personal-name'>
-                      {blog.acf.name} （{blog.acf.post}）
-                    </p>
-                    <p className='company-name'>{blog.acf.company_name}</p>
-                  </div>
-                  <div className='category-name'>
-                    <p>{blog.acf.category_name}</p>
-                  </div>
-                </div>
-              </div>
-            </button>
+            <Card blog={blog} key={blog.id} />
           ))}
         </div>
       </div>
@@ -310,48 +293,6 @@ const Wrapper = styled.div`
       object-fit: cover;
     }
   }
-  /* カード系 */
-  .category-name {
-    padding: 5px 12px;
-    border-radius: 30px;
-    font-size: 12px;
-    color: #ffffff;
-    background-color: #032025;
-  }
-  .card-title {
-    margin-top: 24px;
-    font-size: 24px;
-    color: #27262e;
-    font-weight: bold;
-  }
-  .card-infos {
-    margin-top: 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .personal-name {
-    font-size: 14px;
-    font-weight: bold;
-    color: #747475;
-  }
-  .company-name {
-    font-size: 14px;
-    color: #747475;
-  }
-  .cards-container {
-    margin-top: 24px;
-    display: grid;
-    gap: 24px;
-    grid-template-columns: repeat(3, 1fr);
-    @media (max-width: 1024px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media (max-width: 765px) {
-      grid-template-columns: repeat(1, 1fr);
-    }
-  }
 
   .cards-container {
     margin-top: 24px;
@@ -365,33 +306,5 @@ const Wrapper = styled.div`
     @media (max-width: 765px) {
       grid-template-columns: repeat(1, 1fr);
     }
-  }
-  .card-container {
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15);
-  }
-  .card {
-    padding: 24px;
-    overflow: hidden;
-  }
-  .card-image {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
-    transition: transform 0.2s ease-out;
-    @media (min-width: 765px) {
-      max-width: 100%;
-      height: 220px; /* 任意の高さを指定 */
-    }
-  }
-  .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .card-image:hover {
-    transform: scale(1.05);
   }
 `;

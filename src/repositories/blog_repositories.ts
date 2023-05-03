@@ -7,6 +7,7 @@ export type BlogRepository = {
 };
 const getBlogs = async (): Promise<BlogType[]> => {
   const response = await WpApiClient.get(`/management_bookshelf`);
+
   const blogs = response.data.map((i: any) => {
     return {
       id: i.id,
@@ -19,7 +20,14 @@ const getBlogs = async (): Promise<BlogType[]> => {
         name: i.acf.name,
         image01: String(i.acf.image01),
         image02: String(i.acf.image02),
-        category_name: i.acf.category_name
+        category_name: i.acf.category_name,
+        twitter: i.acf.twitter,
+        facebook: i.acf.facebook,
+        linkedin: i.acf.linkedin,
+        other_link: i.acf.other_link,
+        business: i.acf.business,
+        establishment: i.acf.establishment,
+        company_hp: i.acf.company_hp
       }
     };
   });
@@ -44,7 +52,14 @@ const getBlog = async (id: number): Promise<BlogType> => {
       name: data.acf.name,
       image01: String(data.acf.image01),
       image02: String(data.acf.image02),
-      category_name: data.acf.category_name
+      category_name: data.acf.category_name,
+      twitter: data.acf.twitter,
+      facebook: data.acf.facebook,
+      linkedin: data.acf.linkedin,
+      other_link: data.acf.other_link,
+      business: data.acf.business,
+      establishment: data.acf.establishment,
+      company_hp: data.acf.company_hp
     }
   };
 };

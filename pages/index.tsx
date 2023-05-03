@@ -28,7 +28,7 @@ const Home: NextPage<Props> = ({ blogs }) => {
               content='経営者の本棚は、経営者がこれまで読んできたおすすめの書籍にフォーカスを当てて紹介をする記事メディアになっています。その中で経営者本人についてや提供サービスなども深ぼっています。'
             />
             <meta property='og:type' content='article' />
-            <meta property='og:title' content='経営者の本棚 | 記事一覧' />
+            <meta property='og:title' content='経営者の本棚' />
             <meta
               property='og:description'
               content='経営者の本棚は、経営者がこれまで読んできたおすすめの書籍にフォーカスを当てて紹介をする記事メディアになっています。その中で経営者本人についてや提供サービスなども深ぼっています。'
@@ -36,26 +36,29 @@ const Home: NextPage<Props> = ({ blogs }) => {
             <meta property='og:url' content={`${currentUrl}`} />
             <meta
               property='og:image'
-              content='https://management-bookshelf-admin.com/wp-content/uploads/2023/04/logo.webp'
+              content='https://management-bookshelf-admin.com/wp-content/uploads/2023/05/logo.png'
             />
             <meta
               name='twitter:card'
-              content='https://management-bookshelf-admin.com/wp-content/uploads/2023/04/logo.webp'
+              content='https://management-bookshelf-admin.com/wp-content/uploads/2023/05/logo.png'
             />
             <meta
               name='twitter:site'
               content='@MacopeninSUTABA
 '
             />
-            <meta name='twitter:title' content='経営者の本棚 | 記事一覧' />
+            <meta name='twitter:title' content='経営者の本棚' />
             <meta
               name='twitter:description'
               content='経営者の本棚は、経営者がこれまで読んできたおすすめの書籍にフォーカスを当てて紹介をする記事メディアになっています。その中で経営者本人についてや提供サービスなども深ぼっています。'
             />
             <meta
               name='twitter:image'
-              content='https://management-bookshelf-admin.com/wp-content/uploads/2023/04/logo.webp'
+              content='https://management-bookshelf-admin.com/wp-content/uploads/2023/05/logo.png'
             />
+            <meta property='og:site_name' content='経営者の本棚' />
+            <meta property='og:locale' content='ja_JP' />
+            <link rel='canonical' href={`${currentUrl}`} />
           </Head>
           <Blog blogs={blogs} />
         </>

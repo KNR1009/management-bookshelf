@@ -26,13 +26,13 @@ const Home: NextPage<Props> = ({ blog, recommendations }) => {
             <title>{blog.title}</title>
             <meta
               name='description'
-              content='経営者の本棚は、経営者がこれまで読んできたおすすめの書籍にフォーカスを当てて紹介をする記事メディアになっています。その中で経営者本人についてや提供サービスなども深ぼっています。'
+              content='経営者がおすすめする名著を紹介するメディア。ビジネスやリーダーシップの秘訣が詰まった書籍をご紹介します。経営者が選ぶ名著とその背景を掘り下げる記事メディア。起業家や経営者が学んだ教訓を共有します。'
             />
             <meta property='og:type' content='article' />
             <meta property='og:title' content={blog.title} />
             <meta
               property='og:description'
-              content='経営者の本棚は、経営者がこれまで読んできたおすすめの書籍にフォーカスを当てて紹介をする記事メディアになっています。その中で経営者本人についてや提供サービスなども深ぼっています。'
+              content='経営者がおすすめする名著を紹介するメディア。ビジネスやリーダーシップの秘訣が詰まった書籍をご紹介します。経営者が選ぶ名著とその背景を掘り下げる記事メディア。起業家や経営者が学んだ教訓を共有します。'
             />
             <meta property='og:url' content={currentUrl} />
             <meta property='og:image' content={blog.acf.image01} />
@@ -40,12 +40,15 @@ const Home: NextPage<Props> = ({ blog, recommendations }) => {
             <meta name='twitter:title' content={blog.title} />
             <meta
               name='twitter:description'
-              content='経営者の本棚は、経営者がこれまで読んできたおすすめの書籍にフォーカスを当てて紹介をする記事メディアになっています。その中で経営者本人についてや提供サービスなども深ぼっています。'
+              content='経営者がおすすめする名著を紹介するメディア。ビジネスやリーダーシップの秘訣が詰まった書籍をご紹介します。経営者が選ぶ名著とその背景を掘り下げる記事メディア。起業家や経営者が学んだ教訓を共有します。'
             />
             <meta
               name='twitter:image'
               content='https://management-bookshelf-admin.com/wp-content/uploads/2023/04/logo.webp'
             />
+            <meta property='og:site_name' content='経営者の本棚' />
+            <meta property='og:locale' content='ja_JP' />
+            <link rel='canonical' href={`${currentUrl}`} />
           </Head>
           <BlogDetail blog={blog} recommendations={recommendations} />
         </>
