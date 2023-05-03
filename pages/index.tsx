@@ -56,6 +56,9 @@ const Home: NextPage<Props> = ({ blogs }) => {
               name='twitter:image'
               content='https://management-bookshelf-admin.com/wp-content/uploads/2023/05/logo.png'
             />
+            <meta property='og:site_name' content='経営者の本棚' />
+            <meta property='og:locale' content='ja_JP' />
+            <link rel='canonical' href={`${currentUrl}`} />
           </Head>
           <Blog blogs={blogs} />
         </>

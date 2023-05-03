@@ -46,6 +46,9 @@ const Home: NextPage<Props> = ({ blog, recommendations }) => {
               name='twitter:image'
               content='https://management-bookshelf-admin.com/wp-content/uploads/2023/04/logo.webp'
             />
+            <meta property='og:site_name' content='経営者の本棚' />
+            <meta property='og:locale' content='ja_JP' />
+            <link rel='canonical' href={`${currentUrl}`} />
           </Head>
           <BlogDetail blog={blog} recommendations={recommendations} />
         </>
