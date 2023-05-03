@@ -1,4 +1,5 @@
 import { BlogType } from '@/model/blog';
+import { formatSlashYMD } from '@/utils/formatter';
 import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
@@ -17,6 +18,9 @@ export const Card: React.FC<Props> = ({ blog }) => {
       <div className='card'>
         <div className='card-image'>
           <img src={blog.acf.image01} alt='プロフィール画像' />
+        </div>
+        <div className='card-data'>
+          <p>{formatSlashYMD(new Date(blog.date))}</p>
         </div>
         <div className='card-title'>
           <p>{blog.title}</p>
@@ -63,8 +67,14 @@ const CardContainer = styled.button`
     justify-content: space-between;
     align-items: center;
   }
+  .card-data {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #747475;
+  }
   .card-title {
-    margin-top: 24px;
+    margin-top: 8px;
+    height: 60px;
     font-size: 20px;
     color: #27262e;
     font-weight: bold;
