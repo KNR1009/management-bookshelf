@@ -28,7 +28,7 @@ const Home: NextPage<Props> = ({ blogs }) => {
               content='経営者の本棚は、経営者がこれまで読んできたおすすめの書籍にフォーカスを当てて紹介をする記事メディアになっています。その中で経営者本人についてや提供サービスなども深ぼっています。'
             />
             <meta property='og:type' content='article' />
-            <meta property='og:title' content='経営者の本棚 | 記事一覧' />
+            <meta property='og:title' content='経営者の本棚' />
             <meta
               property='og:description'
               content='経営者の本棚は、経営者がこれまで読んできたおすすめの書籍にフォーカスを当てて紹介をする記事メディアになっています。その中で経営者本人についてや提供サービスなども深ぼっています。'
@@ -47,7 +47,7 @@ const Home: NextPage<Props> = ({ blogs }) => {
               content='@MacopeninSUTABA
 '
             />
-            <meta name='twitter:title' content='経営者の本棚 | 記事一覧' />
+            <meta name='twitter:title' content='経営者の本棚' />
             <meta
               name='twitter:description'
               content='経営者の本棚は、経営者がこれまで読んできたおすすめの書籍にフォーカスを当てて紹介をする記事メディアになっています。その中で経営者本人についてや提供サービスなども深ぼっています。'
