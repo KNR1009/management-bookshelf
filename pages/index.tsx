@@ -36,11 +36,11 @@ const Home: NextPage<Props> = ({ blogs }) => {
             <meta property='og:url' content={`${currentUrl}`} />
             <meta
               property='og:image'
-              content='https://management-bookshelf-admin.com/wp-content/uploads/2023/04/logo.webp'
+              content='https://management-bookshelf-admin.com/wp-content/uploads/2023/05/logo.png'
             />
             <meta
               name='twitter:card'
-              content='https://management-bookshelf-admin.com/wp-content/uploads/2023/04/logo.webp'
+              content='https://management-bookshelf-admin.com/wp-content/uploads/2023/05/logo.png'
             />
             <meta
               name='twitter:site'
@@ -54,7 +54,7 @@ const Home: NextPage<Props> = ({ blogs }) => {
             />
             <meta
               name='twitter:image'
-              content='https://management-bookshelf-admin.com/wp-content/uploads/2023/04/logo.webp'
+              content='https://management-bookshelf-admin.com/wp-content/uploads/2023/05/logo.png'
             />
           </Head>
           <Blog blogs={blogs} />

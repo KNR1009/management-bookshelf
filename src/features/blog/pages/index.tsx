@@ -7,6 +7,7 @@ import { FaPlus } from 'react-icons/fa';
 
 // model
 import { BlogType } from '@/model/blog';
+// components
 import { Card } from '@/components/card';
 
 type Props = {
