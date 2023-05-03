@@ -12,6 +12,7 @@ import { Card } from '@/components/card';
 
 type Props = {
   blogs: BlogType[];
+  recommendations: BlogType[];
 };
 
 export const Blog: React.FC<Props> = (props) => {
@@ -43,19 +44,28 @@ export const Blog: React.FC<Props> = (props) => {
       </div>
       <div className='blog-container'>
         <div className='title-category'>
+          <h2>トレンド記事</h2>
+        </div>
+        <div className='cards-container'>
+          {props.recommendations.map((blog) => (
+            <Card blog={blog} key={blog.id} />
+          ))}
+        </div>
+      </div>
+      <div className='blog-container'>
+        <div className='title-category'>
           <h2>新着記事</h2>
-          {/* 記事一覧の詳細画面へ遷移させる+ページネーション */}
-          <div className='category'>
-            <button className='add-button'>
-              <PlusIcon />
-              もっと見る
-            </button>
-          </div>
         </div>
         <div className='cards-container'>
           {props.blogs.map((blog) => (
             <Card blog={blog} key={blog.id} />
           ))}
+        </div>
+        <div className='add-button-container'>
+          <button className='add-button'>
+            <PlusIcon />
+            記事をもっと見る
+          </button>
         </div>
       </div>
     </Wrapper>
@@ -63,6 +73,9 @@ export const Blog: React.FC<Props> = (props) => {
 };
 
 const Wrapper = styled.div`
+  .blog-container {
+    padding-top: 24px;
+  }
   .category-search {
     display: flex;
     flex-wrap: wrap;
@@ -119,6 +132,19 @@ const Wrapper = styled.div`
       background-color: rgba(84, 41, 255, 0.1);
     }
   }
+  .add-button-container {
+    margin-top: 20px;
+    font-size: 20px;
+    text-align: center;
+    color: #7a797d;
+    button {
+      padding: 5px 12px;
+      border-radius: 30px;
+    }
+    .active {
+      background-color: rgba(84, 41, 255, 0.1);
+    }
+  }
   .add-button {
     position: relative;
   }
@@ -126,7 +152,7 @@ const Wrapper = styled.div`
 
 const PlusIcon = styled(FaPlus)`
   position: absolute;
-  left: -8px;
+  left: -12px;
   top: 50%;
   transform: translateY(-50%);
   color: #b9b8bc;

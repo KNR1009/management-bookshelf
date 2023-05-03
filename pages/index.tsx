@@ -8,12 +8,14 @@ import { Layout } from '@/components/layout';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { BlogFactory, BlogType } from '@/model/blog';
+import { RecommendationFactory } from '@/model/recommendation';
 
 type Props = {
   blogs: BlogType[];
+  recommendations: BlogType[];
 };
 
-const Home: NextPage<Props> = ({ blogs }) => {
+const Home: NextPage<Props> = ({ blogs, recommendations }) => {
   const router = useRouter();
   const currentUrl = process.browser ? window.location.origin + router.asPath : '';
 
@@ -57,7 +59,7 @@ const Home: NextPage<Props> = ({ blogs }) => {
             <meta property='og:locale' content='ja_JP' />
             <link rel='canonical' href={`${currentUrl}`} />
           </Head>
-          <Blog blogs={blogs} />
+          <Blog blogs={blogs} recommendations={recommendations} />
         </>
       )}
     </Layout>
@@ -67,10 +69,12 @@ const Home: NextPage<Props> = ({ blogs }) => {
 export const getStaticProps: GetStaticProps<Props> = async () => {
   try {
     const blogs = await BlogFactory().index();
-    return { props: { blogs }, revalidate: 60 };
+    const recommendations = await RecommendationFactory().index();
+
+    return { props: { blogs, recommendations }, revalidate: 60 };
   } catch (error) {
     console.error(error);
-    return { props: { blogs: [] }, revalidate: 60 };
+    return { props: { blogs: [], recommendations: [] }, revalidate: 60 };
   }
 };
 
