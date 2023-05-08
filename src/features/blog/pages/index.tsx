@@ -9,6 +9,7 @@ import { FaPlus } from 'react-icons/fa';
 import { BlogType } from '@/model/blog';
 // components
 import { Card } from '@/components/card';
+import Link from 'next/link';
 
 type Props = {
   blogs: BlogType[];
@@ -19,13 +20,7 @@ export const Blog: React.FC<Props> = (props) => {
   return (
     <Wrapper>
       <div className='category-search'>
-        <button
-          onClick={() => {
-            alert('TODO: 気が向いたら実装する');
-          }}
-        >
-          エンジニア
-        </button>
+        <button>エンジニア</button>
         <button>コンサルティング</button>
         <button>マーケティング</button>
         <button>デザイナー</button>
@@ -38,10 +33,11 @@ export const Blog: React.FC<Props> = (props) => {
         <button>建築</button>
         <button>デジタルブランディング</button>
       </div>
-
-      <div className='banner'>
-        <Image src={logo} alt='ロゴ' className='logo-image' />
-      </div>
+      <Link href='/form'>
+        <div className='banner'>
+          <Image src={logo} alt='ロゴ' className='logo-image' />
+        </div>
+      </Link>
       <div className='blog-container'>
         <div className='title-category'>
           <h2>トレンド記事</h2>
@@ -73,6 +69,12 @@ export const Blog: React.FC<Props> = (props) => {
 };
 
 const Wrapper = styled.div`
+  .banner {
+    cursor: pointer;
+    img {
+      border-radius: 8px;
+    }
+  }
   .blog-container {
     padding-top: 24px;
   }
