@@ -9,6 +9,7 @@ type Props = {
   blog: BlogType;
 };
 export const Card: React.FC<Props> = ({ blog }) => {
+  console.log(blog);
   return (
     <CardContainer>
       <Link href={`/${blog.id}`}>

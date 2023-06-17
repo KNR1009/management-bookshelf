@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import logo from '../../../../public/banner.png';
@@ -11,12 +11,30 @@ import { BlogType } from '@/model/blog';
 import { Card } from '@/components/card';
 import Link from 'next/link';
 
+// fade-in
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // AOS CSSをインポート
+
 type Props = {
   blogs: BlogType[];
   recommendations: BlogType[];
 };
 
 export const Blog: React.FC<Props> = (props) => {
+  // カード枚数
+  const [numVisibleBlogs, setNumVisibleBlogs] = useState(9);
+
+  const handleClick = () => {
+    setNumVisibleBlogs((prevNum) => prevNum + 9);
+  };
+  // fade-inの初期化
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true
+    });
+  }, []);
   return (
     <Wrapper>
       <div className='category-search'>
@@ -34,7 +52,7 @@ export const Blog: React.FC<Props> = (props) => {
         <button>デジタルブランディング</button>
       </div>
       <Link href='/form'>
-        <div className='banner'>
+        <div className='banner' data-aos='fade-up'>
           <Image src={logo} alt='ロゴ' className='logo-image' />
         </div>
       </Link>
@@ -42,7 +60,7 @@ export const Blog: React.FC<Props> = (props) => {
         <div className='title-category'>
           <h2>トレンド記事</h2>
         </div>
-        <div className='cards-container'>
+        <div className='cards-container' data-aos='fade-up'>
           {props.recommendations.map((blog) => (
             <Card blog={blog} key={blog.id} />
           ))}
@@ -52,13 +70,13 @@ export const Blog: React.FC<Props> = (props) => {
         <div className='title-category'>
           <h2>新着記事</h2>
         </div>
-        <div className='cards-container'>
-          {props.blogs.map((blog) => (
+        <div className='cards-container' data-aos='fade-up'>
+          {props.blogs.slice(0, numVisibleBlogs).map((blog) => (
             <Card blog={blog} key={blog.id} />
           ))}
         </div>
         <div className='add-button-container'>
-          <button className='add-button'>
+          <button className='add-button' onClick={handleClick}>
             <PlusIcon />
             記事をもっと見る
           </button>
