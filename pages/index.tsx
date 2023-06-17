@@ -20,7 +20,6 @@ const Home: NextPage<Props> = ({ blogs, recommendations }) => {
   const router = useRouter();
   const { categories } = useFetchCategories();
 
-  console.log(categories);
   const currentUrl = process.browser ? window.location.origin + router.asPath : '';
 
   return (

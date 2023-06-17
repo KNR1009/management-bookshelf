@@ -8,7 +8,7 @@ export type CategoryRepository = {
 const getCategories = async (): Promise<CategoryType[]> => {
   const { data } = await WpApiClient.get(`/categories`);
 
-  const result = data.map((i: any) => {
+  const result: CategoryType[] = data.map((i: any) => {
     return {
       id: i.id,
       count: i.count,
@@ -18,7 +18,7 @@ const getCategories = async (): Promise<CategoryType[]> => {
     };
   });
 
-  return result;
+  return result.filter((i) => i.name !== '未分類' && i.name !== 'おすすめの記事');
 };
 
 export const categoryRepository: CategoryRepository = {
