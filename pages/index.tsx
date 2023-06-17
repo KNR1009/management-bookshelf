@@ -9,6 +9,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { BlogFactory, BlogType } from '@/model/blog';
 import { RecommendationFactory } from '@/model/recommendation';
+import { useFetchCategories } from '@/features/blog/hooks/category';
 
 type Props = {
   blogs: BlogType[];
@@ -17,11 +18,14 @@ type Props = {
 
 const Home: NextPage<Props> = ({ blogs, recommendations }) => {
   const router = useRouter();
+  const { categories } = useFetchCategories();
+
+  console.log(categories);
   const currentUrl = process.browser ? window.location.origin + router.asPath : '';
 
   return (
     <Layout>
-      {blogs && (
+      {blogs && categories && (
         <>
           <Head>
             <title>経営者の本棚 | 記事一覧</title>
@@ -55,7 +59,7 @@ const Home: NextPage<Props> = ({ blogs, recommendations }) => {
             <meta property='og:locale' content='ja_JP' />
             <link rel='canonical' href={`${currentUrl}`} />
           </Head>
-          <Blog blogs={blogs} recommendations={recommendations} />
+          <Blog categories={categories} blogs={blogs} recommendations={recommendations} />
         </>
       )}
     </Layout>

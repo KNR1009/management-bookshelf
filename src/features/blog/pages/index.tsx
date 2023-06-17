@@ -7,6 +7,8 @@ import { FaPlus } from 'react-icons/fa';
 
 // model
 import { BlogType } from '@/model/blog';
+import { CategoryType } from '@/model/category';
+
 // components
 import { Card } from '@/components/card';
 import Link from 'next/link';
@@ -18,6 +20,7 @@ import 'aos/dist/aos.css'; // AOS CSSをインポート
 type Props = {
   blogs: BlogType[];
   recommendations: BlogType[];
+  categories: CategoryType[];
 };
 
 export const Blog: React.FC<Props> = (props) => {
@@ -38,18 +41,11 @@ export const Blog: React.FC<Props> = (props) => {
   return (
     <Wrapper>
       <div className='category-search'>
-        <button>エンジニア</button>
-        <button>コンサルティング</button>
-        <button>マーケティング</button>
-        <button>デザイナー</button>
-        <button>広報</button>
-        <button>人事</button>
-        <button>スタートアップ</button>
-        <button>営業</button>
-        <button>EC</button>
-        <button>医療</button>
-        <button>建築</button>
-        <button>デジタルブランディング</button>
+        {props.categories.map((i) => (
+          <div className='button' key={i.id}>
+            <Link href={` categories/${i.id}`}>{i.name}</Link>
+          </div>
+        ))}
       </div>
       <Link href='/form'>
         <div className='banner' data-aos='fade-up'>
@@ -101,7 +97,7 @@ const Wrapper = styled.div`
     flex-wrap: wrap;
     gap: 8px;
     margin-bottom: 24px;
-    button {
+    .button {
       background-color: #ffffff;
       border: 1px solid #dfdfdf;
       color: #27262e;
