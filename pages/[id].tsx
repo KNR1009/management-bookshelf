@@ -13,7 +13,6 @@ type Props = {
   blog: BlogType;
   recommendations: BlogType[];
 };
-
 const Home: NextPage<Props> = ({ blog, recommendations }) => {
   const router = useRouter();
   const currentUrl = process.browser ? window.location.origin + router.asPath : '';

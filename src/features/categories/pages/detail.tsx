@@ -19,11 +19,10 @@ import 'aos/dist/aos.css'; // AOS CSSをインポート
 
 type Props = {
   blogs: BlogType[];
-  recommendations: BlogType[];
   categories: CategoryType[];
 };
 
-export const Blog: React.FC<Props> = (props) => {
+export const CategoryBlogs: React.FC<Props> = (props) => {
   // カード枚数
   const [numVisibleBlogs, setNumVisibleBlogs] = useState(9);
 
@@ -43,7 +42,7 @@ export const Blog: React.FC<Props> = (props) => {
       <div className='category-search'>
         {props.categories.map((i) => (
           <div className='button' key={i.id}>
-            <Link href={`categories/${i.id}`}>{i.name}</Link>
+            <Link href={` categories/${i.id}`}>{i.name}</Link>
           </div>
         ))}
       </div>
@@ -52,16 +51,6 @@ export const Blog: React.FC<Props> = (props) => {
           <Image src={logo} alt='ロゴ' className='logo-image' />
         </div>
       </Link>
-      <div className='blog-container'>
-        <div className='title-category'>
-          <h2>トレンド記事</h2>
-        </div>
-        <div className='cards-container' data-aos='fade-up'>
-          {props.recommendations.map((blog) => (
-            <Card blog={blog} key={blog.id} />
-          ))}
-        </div>
-      </div>
       <div className='blog-container'>
         <div className='title-category'>
           <h2>新着記事</h2>
