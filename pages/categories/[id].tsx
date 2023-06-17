@@ -1,30 +1,29 @@
-import type { GetStaticProps, NextPage } from 'next';
-// page
-import { Blog } from '@/features/blog/pages';
+import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+
 // components
 import { Layout } from '@/components/layout';
 
 // Head
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { BlogFactory, BlogType } from '@/model/blog';
-import { RecommendationFactory } from '@/model/recommendation';
-import { CategoryFactory, CategoryType } from '@/model/category';
+import { BlogType } from '@/model/blog';
+import { CategoryBlogFactory, CategoryFactory, CategoryType } from '@/model/category';
+import { CategoryBlogs } from '@/features/categories/pages/detail';
 
 type Props = {
   blogs: BlogType[];
-  recommendations: BlogType[];
   categories: CategoryType[];
 };
 
-const Home: NextPage<Props> = ({ blogs, recommendations, categories }) => {
+const Page: NextPage<Props> = ({ blogs, categories }) => {
   const router = useRouter();
-
+  const id = router.query.id;
+  const categoryName = categories.find((i) => i.id === Number(id))?.name;
   const currentUrl = process.browser ? window.location.origin + router.asPath : '';
 
   return (
     <Layout>
-      {blogs && categories && (
+      {blogs && categories && categoryName && (
         <>
           <Head>
             <title>経営者の本棚 | 記事一覧</title>
@@ -58,24 +57,41 @@ const Home: NextPage<Props> = ({ blogs, recommendations, categories }) => {
             <meta property='og:locale' content='ja_JP' />
             <link rel='canonical' href={`${currentUrl}`} />
           </Head>
-          <Blog categories={categories} blogs={blogs} recommendations={recommendations} />
+          <CategoryBlogs categories={categories} blogs={blogs} categoryName={categoryName} />
         </>
       )}
     </Layout>
   );
 };
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  // すべてのカテゴリーを取得
+  const categories = await CategoryFactory().index();
+
+  // パスとしてカテゴリーIDを提供
+  const paths = categories.map((category) => ({
+    params: { id: category.id.toString() }
+  }));
+
+  return { paths, fallback: false };
+};
+
+export const getStaticProps: GetStaticProps<Props, { id: string }> = async ({ params }) => {
+  const id = params?.id;
+
+  if (!id) {
+    return { notFound: true };
+  }
+
   try {
-    const blogs = await BlogFactory().index();
-    const recommendations = await RecommendationFactory().index();
+    const [blogs] = await Promise.all([CategoryBlogFactory().index(Number(id))]);
     const categories = await CategoryFactory().index();
 
-    return { props: { blogs, recommendations, categories }, revalidate: 60 };
+    return { props: { blogs, categories }, revalidate: 60 };
   } catch (error) {
     console.error(error);
-    return { props: { blogs: [], recommendations: [], categories: [] }, revalidate: 60 };
+    return { notFound: true };
   }
 };
 
-export default Home;
+export default Page;
