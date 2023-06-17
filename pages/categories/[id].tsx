@@ -7,23 +7,23 @@ import { Layout } from '@/components/layout';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { BlogType } from '@/model/blog';
-import { useFetchCategories } from '@/features/categories/hooks';
-import { CategoryBlogFactory, CategoryFactory } from '@/model/category';
+import { CategoryBlogFactory, CategoryFactory, CategoryType } from '@/model/category';
 import { CategoryBlogs } from '@/features/categories/pages/detail';
 
 type Props = {
   blogs: BlogType[];
+  categories: CategoryType[];
 };
 
-const Page: NextPage<Props> = ({ blogs }) => {
+const Page: NextPage<Props> = ({ blogs, categories }) => {
   const router = useRouter();
-  const { categories } = useFetchCategories();
-
+  const id = router.query.id;
+  const categoryName = categories.find((i) => i.id === Number(id))?.name;
   const currentUrl = process.browser ? window.location.origin + router.asPath : '';
 
   return (
     <Layout>
-      {blogs && categories && (
+      {blogs && categories && categoryName && (
         <>
           <Head>
             <title>経営者の本棚 | 記事一覧</title>
@@ -57,7 +57,7 @@ const Page: NextPage<Props> = ({ blogs }) => {
             <meta property='og:locale' content='ja_JP' />
             <link rel='canonical' href={`${currentUrl}`} />
           </Head>
-          <CategoryBlogs categories={categories} blogs={blogs} />
+          <CategoryBlogs categories={categories} blogs={blogs} categoryName={categoryName} />
         </>
       )}
     </Layout>
@@ -85,7 +85,9 @@ export const getStaticProps: GetStaticProps<Props, { id: string }> = async ({ pa
 
   try {
     const [blogs] = await Promise.all([CategoryBlogFactory().index(Number(id))]);
-    return { props: { blogs }, revalidate: 60 };
+    const categories = await CategoryFactory().index();
+
+    return { props: { blogs, categories }, revalidate: 60 };
   } catch (error) {
     console.error(error);
     return { notFound: true };

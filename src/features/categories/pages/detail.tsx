@@ -20,6 +20,7 @@ import 'aos/dist/aos.css'; // AOS CSSをインポート
 type Props = {
   blogs: BlogType[];
   categories: CategoryType[];
+  categoryName: string;
 };
 
 export const CategoryBlogs: React.FC<Props> = (props) => {
@@ -40,9 +41,12 @@ export const CategoryBlogs: React.FC<Props> = (props) => {
   return (
     <Wrapper>
       <div className='category-search'>
+        <div className='button'>
+          <Link href='/'>すべて</Link>
+        </div>
         {props.categories.map((i) => (
           <div className='button' key={i.id}>
-            <Link href={` categories/${i.id}`}>{i.name}</Link>
+            <Link href={`/categories/${i.id}`}>{i.name}</Link>
           </div>
         ))}
       </div>
@@ -53,19 +57,28 @@ export const CategoryBlogs: React.FC<Props> = (props) => {
       </Link>
       <div className='blog-container'>
         <div className='title-category'>
-          <h2>新着記事</h2>
+          <h2>{props.categoryName}</h2>
         </div>
-        <div className='cards-container' data-aos='fade-up'>
-          {props.blogs.slice(0, numVisibleBlogs).map((blog) => (
-            <Card blog={blog} key={blog.id} />
-          ))}
-        </div>
-        <div className='add-button-container'>
-          <button className='add-button' onClick={handleClick}>
-            <PlusIcon />
-            記事をもっと見る
-          </button>
-        </div>
+        {props.blogs.length > 0 ? (
+          <>
+            {' '}
+            <div className='cards-container' data-aos='fade-up'>
+              {props.blogs.slice(0, numVisibleBlogs).map((blog) => (
+                <Card blog={blog} key={blog.id} />
+              ))}
+            </div>
+            <div className='add-button-container'>
+              <button className='add-button' onClick={handleClick}>
+                <PlusIcon />
+                記事をもっと見る
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className='add-button-container'>
+            <p className='add-button'>現在記事はありません</p>
+          </div>
+        )}
       </div>
     </Wrapper>
   );
