@@ -6,6 +6,16 @@ import { BlogType } from '@/model/blog';
 export type RecommendationRepository = {
   getRecommendations: () => Promise<BlogType[]>;
 };
+
+// ランダムデータを取得するロジック
+function shuffleArray(array: any[]) {
+  const shuffledArray = [...array];
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+  return shuffledArray;
+}
 const getRecommendations = async (): Promise<BlogType[]> => {
   const response = await WpApiClient.get(`/management_bookshelf?categories=5`);
   const blogs = response.data.map((i: any) => {
@@ -24,13 +34,9 @@ const getRecommendations = async (): Promise<BlogType[]> => {
       }
     };
   });
-  // 取得したおすすめ記事を3件ランダムに選ぶようなロジックを追加する
-  return (
-    // Sort the blogs array by date in ascending order (oldest first)
-    blogs.sort((a: BlogType, b: BlogType) => {
-      return new Date(b.date).getTime() - new Date(a.date).getTime();
-    })
-  );
+  const shuffledBlogs = shuffleArray(blogs);
+  const randomBlogs = shuffledBlogs.slice(0, 3);
+  return randomBlogs;
 };
 
 export const recommendationRepository: RecommendationRepository = {
