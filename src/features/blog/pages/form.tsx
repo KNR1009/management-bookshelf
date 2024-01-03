@@ -7,10 +7,10 @@ export const Form: React.FC = () => {
     <Wrapper>
       <h2>概要</h2>
       <div className='text-container'>
-        <p>「経営者の本棚」は経営者や役員のおすすめの書籍を紹介するメディアです。</p>
+        <p>「Innovate AI Voices」はAI技術とその影響を深く掘り下げる専門メディアです。</p>
         <p>
-          ビジネスやリーダーシップの成功の秘訣が詰まった書籍を紹介します。
-          また経営者が選ぶ名著とその背景や会社を深掘ります。
+          最新のAIトレンド、革新的な研究、およびAIを活用するビジネスリーダー、開発者、研究者の独占インタビューを提供します。
+          テクノロジーの未来を形作る、先駆的な考え方や洞察を、幅広い視点からお届けします。
         </p>
       </div>
       <h2>インタビュー内容の具体例</h2>
@@ -19,10 +19,10 @@ export const Form: React.FC = () => {
         <p>質問内容は下記のようになっています(一例)</p>
         <ul>
           <li>会社について</li>
-          <li>提供サービスについて</li>
-          <li>会社を設立した背景 (経営者のみ)</li>
-          <li>おすすめの書籍 (1から5冊ほど)</li>
-          <li>PRしたいこと(サービスの紹介や人材募集について)</li>
+          <li>AI関連の活動内容</li>
+          <li>注目しているAI技術</li>
+          <li>今後の活動</li>
+          <li>おすすめのAIツール</li>
           <li>最後にひとこと</li>
         </ul>
         <p>その他、会社をPRする上で入れたい項目等ありましたらご相談ください</p>
@@ -31,24 +31,25 @@ export const Form: React.FC = () => {
 
       <div className='text-container'>
         <p>
-          現在「経営者の本棚」は立ち上げフェーズなので<span>「無料」</span>
+          現在「Innovate AI Voices」は立ち上げフェーズなので<span>「無料」</span>
           でインタビュー・記事作成・PRまでを行います。
         </p>
-        <p>インタビュー後の効果やメリットは下記ようなものが挙げられます。</p>
+        <p>インタビューを受けるメリット</p>
         <ul>
-          <li>月間1.8億インプレッションのSNSアカウントでPRをするので高いPV数を獲得できる</li>
-          <li>経営者や役員及び会社のSNSフォロワー数増加に繋がる</li>
+          <li>月間2.4億インプレッションのTwitter(X)でPR</li>
+          <li>AI界隈での権威性を示せる</li>
+          <li>SNSフォロワー数増加に繋がる</li>
           <li>提供サービスの認知拡大</li>
-          <li>会社や社長の紹介により人材採用の強化を見込める</li>
+          <li>自分のポートフォリオになる</li>
         </ul>
       </div>
       <h2>インタビューアーについて(私について)</h2>
       <div className='text-container'>
         <ul>
-          <li>渋谷のWeb開発企業で最年少執行役員(新卒3年目)</li>
-          <li>役職はエンジニア×マーケティング×広報</li>
+          <li>渋谷のWeb開発会社で執行役員</li>
+          <li>役職はPM・広報・採用・マーケティング</li>
           <li>
-            SNSフォロワー数7.5万人で月間インプレッション数1.8億
+            SNSフォロワー数8.7万人で月間インプレッション数2.4億(最高)
             <a className='icon' href='https://twitter.com/MacopeninSUTABA' target='_blank' rel='noopener noreferrer'>
               <FaExternalLinkAlt size={12} />
             </a>
@@ -59,7 +60,7 @@ export const Form: React.FC = () => {
               <FaExternalLinkAlt size={12} />
             </a>
           </li>
-          <li>月間平均PV数1万のエンジニア向けメディアを運営</li>
+          <li>経営者・生成AIコミュニティを主催</li>
         </ul>
       </div>
       <h2>インタビューフォーム</h2>
