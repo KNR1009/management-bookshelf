@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
-import logo from '../../../../public/banner.png';
 // icon
 import { FaPlus } from 'react-icons/fa';
 
