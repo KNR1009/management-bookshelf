@@ -57,6 +57,7 @@ const Home: NextPage<Props> = ({ blogs, recommendations, categories }) => {
             <meta property='og:site_name' content='経営者の本棚' />
             <meta property='og:locale' content='ja_JP' />
             <link rel='canonical' href={`${currentUrl}`} />
+            <link rel='icon' href='/favicon.png' />
           </Head>
           <Blog categories={categories} blogs={blogs} recommendations={recommendations} />
         </>

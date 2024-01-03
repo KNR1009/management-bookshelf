@@ -18,7 +18,7 @@ export const Header: React.FC = () => {
           router.push('/');
         }}
       >
-        <Image src={logo} alt='ロゴ' width={80} height={60} className='logo-image' />
+        <Image src={logo} alt='ロゴ' width={80} height={80} className='logo-image' />
       </button>
       <div className='search-form'>
         <input type='text' placeholder='検索' />
