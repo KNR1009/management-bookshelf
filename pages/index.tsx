@@ -27,16 +27,16 @@ const Home: NextPage<Props> = ({ blogs, recommendations, categories }) => {
       {blogs && categories && (
         <>
           <Head>
-            <title>経営者の本棚 | 記事一覧</title>
+            <title>Innovate AI Voices | 記事一覧</title>
             <meta
               name='description'
-              content='経営者の本棚は、経営者がこれまで読んできたおすすめの書籍にフォーカスを当てて紹介をする記事メディアになっています。その中で経営者本人についてや提供サービスなども深ぼっています。'
+              content='「Innovate AI Voices」は、AI技術とその影響を深く掘り下げる専門メディアです。最新のAIトレンド、革新的な研究、およびAIを活用するビジネスリーダー、開発者、研究者の独占インタビューを提供します。テクノロジーの未来を形作る、先駆的な考え方や洞察を、幅広い視点からお届けします。AIの進化を追いかけ、未来を先取りするためのあなたの情報源です。'
             />
             <meta property='og:type' content='article' />
-            <meta property='og:title' content='経営者の本棚' />
+            <meta property='og:title' content='Innovate AI Voices' />
             <meta
               property='og:description'
-              content='経営者の本棚は、経営者がこれまで読んできたおすすめの書籍にフォーカスを当てて紹介をする記事メディアになっています。その中で経営者本人についてや提供サービスなども深ぼっています。'
+              content='「Innovate AI Voices」は、AI技術とその影響を深く掘り下げる専門メディアです。最新のAIトレンド、革新的な研究、およびAIを活用するビジネスリーダー、開発者、研究者の独占インタビューを提供します。テクノロジーの未来を形作る、先駆的な考え方や洞察を、幅広い視点からお届けします。AIの進化を追いかけ、未来を先取りするためのあなたの情報源です。'
             />
             <meta property='og:url' content={`${currentUrl}`} />
             <meta
@@ -45,18 +45,19 @@ const Home: NextPage<Props> = ({ blogs, recommendations, categories }) => {
             />
             <meta name='twitter:card' content='summary_large_image' />
             <meta name='twitter:site' content='@MacopeninSUTABA' />
-            <meta name='twitter:title' content='経営者の本棚' />
+            <meta name='twitter:title' content='Innovate AI Voices' />
             <meta
               name='twitter:description'
-              content='経営者の本棚は、経営者がこれまで読んできたおすすめの書籍にフォーカスを当てて紹介をする記事メディアになっています。その中で経営者本人についてや提供サービスなども深ぼっています。'
+              content='「Innovate AI Voices」は、AI技術とその影響を深く掘り下げる専門メディアです。最新のAIトレンド、革新的な研究、およびAIを活用するビジネスリーダー、開発者、研究者の独占インタビューを提供します。テクノロジーの未来を形作る、先駆的な考え方や洞察を、幅広い視点からお届けします。AIの進化を追いかけ、未来を先取りするためのあなたの情報源です。'
             />
             <meta
               name='twitter:image'
               content='https://management-bookshelf-admin.com/wp-content/uploads/2023/05/logo.png'
             />
-            <meta property='og:site_name' content='経営者の本棚' />
+            <meta property='og:site_name' content='Innovate AI Voices' />
             <meta property='og:locale' content='ja_JP' />
             <link rel='canonical' href={`${currentUrl}`} />
+            <link rel='icon' href='/favicon.png' />
           </Head>
           <Blog categories={categories} blogs={blogs} recommendations={recommendations} />
         </>

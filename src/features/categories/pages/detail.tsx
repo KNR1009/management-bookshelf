@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
-import logo from '../../../../public/banner.png';
 // icon
 import { FaPlus } from 'react-icons/fa';
 
@@ -50,18 +48,12 @@ export const CategoryBlogs: React.FC<Props> = (props) => {
           </div>
         ))}
       </div>
-      <Link href='/form'>
-        <div className='banner' data-aos='fade-up'>
-          <Image src={logo} alt='ロゴ' className='logo-image' />
-        </div>
-      </Link>
       <div className='blog-container'>
         <div className='title-category'>
           <h2>{props.categoryName}</h2>
         </div>
         {props.blogs.length > 0 ? (
           <>
-            {' '}
             <div className='cards-container' data-aos='fade-up'>
               {props.blogs.slice(0, numVisibleBlogs).map((blog) => (
                 <Card blog={blog} key={blog.id} />
