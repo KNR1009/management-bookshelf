@@ -261,7 +261,8 @@ const Wrapper = styled.div`
   }
   .profile-company {
     margin-bottom: 16px;
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: bold;
     color: #062a4a;
     @media (max-width: 1024px) {
       text-align: center;
