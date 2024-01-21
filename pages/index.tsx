@@ -22,6 +22,8 @@ const Home: NextPage<Props> = ({ blogs, recommendations, categories }) => {
 
   const currentUrl = process.browser ? window.location.origin + router.asPath : '';
 
+  console.log(blogs);
+
   return (
     <Layout>
       {blogs && categories && (

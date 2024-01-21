@@ -39,6 +39,24 @@ export const BlogDetail: React.FC<Props> = (props) => {
       <div className='image-container'>
         <img src={props.blog.acf.image01} alt='' />
       </div>
+      {/* プロフィールコンテンツ */}
+      <div className='profile-container'>
+        <h2>プロフィール</h2>
+        <div className='profile-info'>
+          <div className='profile-image'>
+            <img src={props.blog.acf.image01} alt='' />
+          </div>
+          <div className='profile-text'>
+            <p className='profile-name'>
+              {props.blog.acf.name} ({props.blog.acf.name_kana})
+            </p>
+            <p className='profile-company'>
+              {props.blog.acf.company_name} {props.blog.acf.post}
+            </p>
+            <p className='profile-description'>{props.blog.acf.profile_text}</p>
+          </div>
+        </div>
+      </div>
       {/* TODO: 実際の記事データを入れたタイミングで改修する */}
       <div className='blog-container'>
         <div dangerouslySetInnerHTML={createMarkup(props.blog.content)} />
@@ -198,6 +216,61 @@ const TableCellLabel = styled(TableCell)`
 // 本文
 
 const Wrapper = styled.div`
+  .profile-container {
+    h2 {
+      margin: 48px 0 24px 0;
+      padding-left: 12px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #062a4a;
+      border-left: 4px solid #062a4a;
+    }
+  }
+  // プロフィール情報
+  .profile-info {
+    display: flex;
+    gap: 24px;
+    padding: 40px;
+    border-radius: 16px;
+    background-color: #e7e5e5;
+
+    @media (max-width: 1024px) {
+      display: block;
+    }
+  }
+  .profile-image {
+    width: 50%;
+    img {
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+    }
+    @media (max-width: 1024px) {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+  }
+  .profile-name {
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #062a4a;
+    @media (max-width: 1024px) {
+      text-align: center;
+    }
+  }
+  .profile-company {
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #062a4a;
+    @media (max-width: 1024px) {
+      text-align: center;
+    }
+  }
+
   .company-info {
     margin-top: 48px;
     h2 {

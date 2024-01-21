@@ -8,6 +8,8 @@ export type BlogRepository = {
 const getBlogs = async (): Promise<BlogType[]> => {
   const response = await WpApiClient.get(`/management_bookshelf?per_page=100`);
 
+  console.log(response);
+
   const blogs = response.data.map((i: any) => {
     return {
       id: i.id,
@@ -18,6 +20,8 @@ const getBlogs = async (): Promise<BlogType[]> => {
         company_name: i.acf.category_name,
         post: i.acf.post,
         name: i.acf.name,
+        name_kana: i.acf.name_kana,
+        profile_text: i.acf.profile_text,
         image01: String(i.acf.image01),
         image02: String(i.acf.image02),
         category_name: i.acf.category_name,
@@ -51,6 +55,8 @@ const getBlog = async (id: number): Promise<BlogType> => {
       company_name: data.acf.company_name,
       post: data.acf.post,
       name: data.acf.name,
+      name_kana: data.acf.name_kana,
+      profile_text: data.acf.profile_text,
       image01: String(data.acf.image01),
       image02: String(data.acf.image02),
       category_name: data.acf.category_name,
