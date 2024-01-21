@@ -44,14 +44,16 @@ export const BlogDetail: React.FC<Props> = (props) => {
         <h2>プロフィール</h2>
         <div className='profile-info'>
           <div className='profile-image'>
-            <img src='/kondou.jpg' alt='' />
+            <img src={props.blog.acf.image01} alt='' />
           </div>
           <div className='profile-text'>
-            <p className='profile-name'>鈴木貴之 (すずきたかゆき)</p>
-            <p className='profile-company'>株式会社アドバンス CEO</p>
-            <p className='profile-description'>
-              証券会社に入社し、IFAとして独立。Vtuberプロダクションの役員を経て、現在SES企業であるイノベイティアの代表を務める。株式会社イノベイティアは、「常に挑戦を続けることで、IT人材不足という社会問題を解決する」をビジョンに掲げています。
+            <p className='profile-name'>
+              {props.blog.acf.name} ({props.blog.acf.name_kana})
             </p>
+            <p className='profile-company'>
+              {props.blog.acf.company_name} {props.blog.acf.post}
+            </p>
+            <p className='profile-description'>{props.blog.acf.profile_text}</p>
           </div>
         </div>
       </div>

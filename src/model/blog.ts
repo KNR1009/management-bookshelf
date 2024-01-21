@@ -9,6 +9,8 @@ export type BlogType = {
     company_name: string;
     post: string;
     name: string;
+    name_kana: string;
+    profile_text: string;
     image01: string;
     image02: string;
     category_name: string;
