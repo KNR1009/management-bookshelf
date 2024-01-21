@@ -39,6 +39,22 @@ export const BlogDetail: React.FC<Props> = (props) => {
       <div className='image-container'>
         <img src={props.blog.acf.image01} alt='' />
       </div>
+      {/* プロフィールコンテンツ */}
+      <div className='profile-container'>
+        <h2>プロフィール</h2>
+        <div className='profile-info'>
+          <div className='profile-image'>
+            <img src='/kondou.jpg' alt='' />
+          </div>
+          <div className='profile-text'>
+            <p className='profile-name'>鈴木貴之 (すずきたかゆき)</p>
+            <p className='profile-company'>株式会社アドバンス CEO</p>
+            <p className='profile-description'>
+              証券会社に入社し、IFAとして独立。Vtuberプロダクションの役員を経て、現在SES企業であるイノベイティアの代表を務める。株式会社イノベイティアは、「常に挑戦を続けることで、IT人材不足という社会問題を解決する」をビジョンに掲げています。
+            </p>
+          </div>
+        </div>
+      </div>
       {/* TODO: 実際の記事データを入れたタイミングで改修する */}
       <div className='blog-container'>
         <div dangerouslySetInnerHTML={createMarkup(props.blog.content)} />
@@ -198,6 +214,60 @@ const TableCellLabel = styled(TableCell)`
 // 本文
 
 const Wrapper = styled.div`
+  .profile-container {
+    h2 {
+      margin: 48px 0 24px 0;
+      padding-left: 12px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #062a4a;
+      border-left: 4px solid #062a4a;
+    }
+  }
+  // プロフィール情報
+  .profile-info {
+    display: flex;
+    gap: 24px;
+    padding: 40px;
+    border-radius: 16px;
+    background-color: #e7e5e5;
+
+    @media (max-width: 1024px) {
+      display: block;
+    }
+  }
+  .profile-image {
+    width: 50%;
+    img {
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+    }
+    @media (max-width: 1024px) {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+  }
+  .profile-name {
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #062a4a;
+    @media (max-width: 1024px) {
+      text-align: center;
+    }
+  }
+  .profile-company {
+    margin-bottom: 16px;
+    font-size: 20px;
+    color: #062a4a;
+    @media (max-width: 1024px) {
+      text-align: center;
+    }
+  }
+
   .company-info {
     margin-top: 48px;
     h2 {
