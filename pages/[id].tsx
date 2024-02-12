@@ -61,7 +61,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const blogs = await BlogFactory().index();
   const paths = blogs.map((blog: BlogType) => ({ params: { id: blog.id.toString() } }));
 
-  return { paths, fallback: false };
+  return { paths, fallback: 'blocking' };
 };
 
 export const getStaticProps: GetStaticProps<Props, { id: string }> = async ({ params }) => {
