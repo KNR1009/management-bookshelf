@@ -48,7 +48,8 @@ export const BlogDetail: React.FC<Props> = (props) => {
           </div>
           <div className='profile-text'>
             <p className='profile-name'>
-              {props.blog.acf.name} ({props.blog.acf.name_kana})
+              {props.blog.acf.name}
+              {props.blog.acf.name_kana !== '' && <>({props.blog.acf.name_kana})</>}
             </p>
             <p className='profile-company'>
               {props.blog.acf.company_name} {props.blog.acf.post}
