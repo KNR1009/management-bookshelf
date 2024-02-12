@@ -319,6 +319,10 @@ const Wrapper = styled.div`
       height: 100%;
       object-fit: cover;
     }
+    a {
+      color: #0f83fd; /* テキストリンクの色を水色に設定 */
+      text-decoration: underline; /* リンクがより明確になるように下線を追加 */
+    }
   }
   /* blog内のブロックstyle */
 
